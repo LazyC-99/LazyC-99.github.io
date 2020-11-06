@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Nodejs学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2020-11-06T06:09:34.728Z" itemprop="datePublished">2020-11-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0/">Nodejs学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h1><p>web服务: express, koa, hapi<br>模板引擎: handlebars, ejs, jade<br>前端打包: webpak, fis,<br>任务管理: gulp<br>单元测试: karma, mocha, jasmine<br>包管理器: npm, cnpm, yarn<br>守护进程: pm2</p>
+<hr>
+<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><h6 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1.初始化"></a>1.初始化</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npm init </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><h6 id="依赖安装-S（等同于–save）表示项目打包时会将该依赖包一并打包；-D（等同于–save-dev）表示该依赖包仅在开发环境下使用，正式打包不会加到项目中。"><a href="#依赖安装-S（等同于–save）表示项目打包时会将该依赖包一并打包；-D（等同于–save-dev）表示该依赖包仅在开发环境下使用，正式打包不会加到项目中。" class="headerlink" title="依赖安装:-S（等同于–save）表示项目打包时会将该依赖包一并打包；-D（等同于–save-dev）表示该依赖包仅在开发环境下使用，正式打包不会加到项目中。"></a>依赖安装:-S（等同于–save）表示项目打包时会将该依赖包一并打包；-D（等同于–save-dev）表示该依赖包仅在开发环境下使用，正式打包不会加到项目中。</h6></li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 安装但不写入package.json； </span></span><br><span class="line"><span class="variable">$</span> npm install xxx</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装并写入package.json的&quot;dependencies&quot;中；</span></span><br><span class="line"><span class="variable">$</span> npm install xxx –S </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装并写入package.json的&quot;evDependencies&quot;中;</span></span><br><span class="line"><span class="variable">$</span> npm install xxx –D</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="express模块"><a href="#express模块" class="headerlink" title="express模块"></a>express模块</h2><h5 id="于nodejs的极简web服务开发框架-可以快速创建web服务器"><a href="#于nodejs的极简web服务开发框架-可以快速创建web服务器" class="headerlink" title="于nodejs的极简web服务开发框架,可以快速创建web服务器"></a>于nodejs的极简web服务开发框架,可以快速创建web服务器</h5><h6 id="1-项目初始化"><a href="#1-项目初始化" class="headerlink" title="1.项目初始化"></a>1.项目初始化</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npx express<span class="literal">-generator</span> -<span class="literal">-view</span>=ejs 项目名字</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> nmp i</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-启动项目"><a href="#3-启动项目" class="headerlink" title="3.启动项目"></a>3.启动项目</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npm <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="4-目录结构"><a href="#4-目录结构" class="headerlink" title="4.目录结构"></a>4.目录结构</h6><ul>
+<li><p>bin: 启动目录 里面包含了一个启动文件 www 默认监听端口是 3000 (不用)</p>
+</li>
+<li><p>node_modules: 所有安装的依赖模块 都在这个文件夹里面</p>
+</li>
+<li><p>public: 所有的前端静态资源 html css image js</p>
+</li>
+<li><p>routes: 放的是 路由 文件 (默认有两个)路由主要定义 url 和 资源 的映射关系 ( 一一对应关系 )主要用来接收前端发送的请求 响应数据给前端</p>
+</li>
+<li><p>views: 主要放置 ejs 后端模板文件</p>
+</li>
+<li><p>app.js: 入口文件(主文件) 总路由 (其他的路由 要由它来分配)</p>
+</li>
+<li><p>package.json: 包描述文件 最重要的是 依赖的模板列表 dependencies</p>
+</li>
+</ul>
+<h6 id="5-app-js文件"><a href="#5-app-js文件" class="headerlink" title="5.app.js文件"></a>5.app.js文件</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> indexRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/index&#x27;</span>);<span class="comment">//引入路由文件</span></span><br><span class="line"><span class="keyword">var</span> app = express(); <span class="comment">//创建服务器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置服务器模板渲染引擎</span></span><br><span class="line">app.set(<span class="string">&#x27;views&#x27;</span>, path.join(__dirname, <span class="string">&#x27;views&#x27;</span>));</span><br><span class="line">app.set(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;ejs&#x27;</span>);</span><br><span class="line"></span><br><span class="line">app.use(logger(<span class="string">&#x27;dev&#x27;</span>)); <span class="comment">//设置日为开发者模式</span></span><br><span class="line"></span><br><span class="line">app.use(express.json()); <span class="comment">//让express处理 json 数据</span></span><br><span class="line"></span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)); <span class="comment">//用于接收 POSt 请求数据</span></span><br><span class="line"></span><br><span class="line">app.use(cookieParser()); <span class="comment">//处理 cookie 数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//静态资源设置；__dirnam代表当前文件的路径</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">&#x27;public&#x27;</span>))); </span><br><span class="line"><span class="comment">//路由(API)</span></span><br><span class="line">app.use(<span class="string">&#x27;/&#x27;</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">&#x27;/users&#x27;</span>, usersRouter);</span><br></pre></td></tr></table></figure>
+
+<h2 id="连接mysql"><a href="#连接mysql" class="headerlink" title="连接mysql"></a>连接mysql</h2><h6 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npm i mysql -<span class="literal">-save</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-引用"><a href="#2-引用" class="headerlink" title="2.引用"></a>2.引用</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">&#x27;mysql&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> myConnection = mysql.createConnection(&#123;</span><br><span class="line">    host:<span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">    user:<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">    password:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    database:<span class="string">&#x27;guoxinan&#x27;</span>,</span><br><span class="line">    port:<span class="number">3306</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">query</span>(<span class="params">sql,option,callback</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//打开连接</span></span><br><span class="line">    myConnection.connect();</span><br><span class="line">    <span class="comment">//sql操作</span></span><br><span class="line">    myConnection.query(sql,option,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="title">if</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;操作数据库失败&quot;</span>,err);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        callback(data);</span><br><span class="line">    &#125;);</span><br><span class="line">    myConnection.end();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-问题"><a href="#3-问题" class="headerlink" title="3.问题"></a>3.问题</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MYSQL：ER_NOT_SUPPORTED_AUTH_MODE:Client does not support authentication protocol</span><br></pre></td></tr></table></figure>
+
+<p>原因:8.0mysql引入了caching_sha2_password模块作为默认身份验证插件，nodejs还没有跟进</p>
+<p>解决办法:进入mysql修改密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;自己的密码&#39;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0/" data-id="ckh5v1u6j0000mgw000foh5a5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/06/hello-world/" class="article-date">
+  <time datetime="2020-11-06T05:47:25.100Z" itemprop="datePublished">2020-11-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/06/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/06/hello-world/" data-id="ckh5uzhvu0000d8w05zji5upq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0/">Nodejs学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/06/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
