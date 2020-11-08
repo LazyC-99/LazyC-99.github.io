@@ -107,7 +107,7 @@ deploy:
   repo: https://github.com/LazyC-99/LazyC-99.github.io
   branch: master
   
-##访问阅读计数
+##访问阅读计数--busuanzhi
 leancloud_counter_security:
   enable_sync: true
   app_id: Pfm15FIfdai9qKWFoOIxxtMO-gzGzoHsz
