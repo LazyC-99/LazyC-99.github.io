@@ -16,7 +16,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install <span class="comment">#d安装依赖</span></span></span><br></pre></td></tr></table></figure>
 
 <p>安装完成后博客文件放在source/_posts文件夹中</p>
-<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>hexo项目结构安装好后，_config.yml可配置相关内容,可以选择自己喜欢的主题，可到官网或者github下载</p>
+<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>hexo项目结构安装好后，_config.yml可配置相关内容,可以选择自己喜欢的主题，可到官网或者github下载<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">NexT主题官网文档<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h4><p>Hexo 提供了快速方便的一键部署功能</p>
 <p>1.首先在github创建一个和你用户名相同的仓库，后面加上.github.io，也就是xxxx.github.io</p>
 <p>2.安装 hexo-deployer-git</p>
