@@ -106,3 +106,11 @@ deploy:
   type: 'git'
   repo: https://github.com/LazyC-99/LazyC-99.github.io
   branch: master
+  
+##访问阅读计数
+leancloud_counter_security:
+  enable_sync: true
+  app_id: Pfm15FIfdai9qKWFoOIxxtMO-gzGzoHsz
+  app_key: 3zsj4ccQogALiLea1aVVCLUy
+  username:  # Will be asked while deploying if is left blank
+  password:  # Recommmended to be left blank. Will be asked while deploying if is left blank

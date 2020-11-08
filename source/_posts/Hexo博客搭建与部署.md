@@ -37,7 +37,7 @@ $ npm install #d安装依赖
 
 #### 修改配置
 
-hexo项目结构安装好后，_config.yml可配置相关内容,可以选择自己喜欢的主题，可到官网或者github下载
+hexo项目结构安装好后，_config.yml可配置相关内容,可以选择自己喜欢的主题，可到官网或者github下载[NexT主题官网文档](https://theme-next.js.org/)
 
 ### 部署
 
@@ -108,6 +108,8 @@ $ git push origin hexo
 ### 图片上传
 
 Markdown文档中是能够存放图片路径显示图片的,上传到网络上之后可以使用图床实现,因为github访问困难,所以图床文件放在gitee
+
+
 
 1.下载PicGo,安装gitee插件
 
