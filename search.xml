@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker的安装使用</title>
+    <url>/2020/11/11/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h2><p><strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong>它是目前最流行的 Linux 容器解决方案。</p>
+<p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p>
+<h2 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h2><ol>
+<li><p>Docker要求CentOS系统内核版本高于3.10,查看CentOS内核版本:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> uname -r</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install docker</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl start docker</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将docer设为开机启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> docker</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">docker search 关键字</td>
+<td align="center">检索</td>
+</tr>
+<tr>
+<td align="center">docker pull 镜像名:tag</td>
+<td align="center">拉取</td>
+</tr>
+<tr>
+<td align="center">docker images</td>
+<td align="center">查询已下载的镜像</td>
+</tr>
+<tr>
+<td align="center">docker rmi  image-id</td>
+<td align="center">删除镜像</td>
+</tr>
+</tbody></table>
+<h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">docker run –name container-name -d image-name||eg:docker run –name mytomcat -d tomcat:latest</td>
+<td align="center">–name:自定义容器名||-d:后台运行||image-name:指定镜像模板</td>
+</tr>
+<tr>
+<td align="center">docker ps</td>
+<td align="center">查看运行中的容器||-a可以查看所有容器</td>
+</tr>
+<tr>
+<td align="center">docer stop container -name/container-id</td>
+<td align="center">停止容器</td>
+</tr>
+<tr>
+<td align="center">docer startcontainer -name/container-id</td>
+<td align="center">启动容器</td>
+</tr>
+<tr>
+<td align="center">docker rm container-id</td>
+<td align="center">删除容器</td>
+</tr>
+<tr>
+<td align="center">-p 6379:6379</td>
+<td align="center">主机端口映射到容器端口</td>
+</tr>
+<tr>
+<td align="center">docker logs container-name/container-id</td>
+<td align="center">查看容器日志</td>
+</tr>
+<tr>
+<td align="center">docker exec -it 容器ID /bin/bash</td>
+<td align="center">进入容器</td>
+</tr>
+<tr>
+<td align="center">exit/Ctrl+P+Q</td>
+<td align="center">退出容器</td>
+</tr>
+</tbody></table>
+<p>启动mysql</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker run -p 3306:3306 --name mysqlInstance e MYSQL_ROOT_PASSWORD=密码 -d mysql</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博客搭建与部署</title>
     <url>/2020/11/08/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
     <content><![CDATA[<h2 id="Hexo博客搭建与部署"><a href="#Hexo博客搭建与部署" class="headerlink" title="Hexo博客搭建与部署"></a>Hexo博客搭建与部署</h2><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 <span class="exturl" data-url="aHR0cDovL2RhcmluZ2ZpcmViYWxsLm5ldC9wcm9qZWN0cy9tYXJrZG93bi8=">Markdown<i class="fa fa-external-link-alt"></i></span>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
@@ -121,8 +218,23 @@
 <h6 id="async-await-终极解决方案"><a href="#async-await-终极解决方案" class="headerlink" title="async/await(终极解决方案)"></a>async/await(终极解决方案)</h6><p>基于promise的一个解决一部的方案</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">try</span> &#123; <span class="keyword">var</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1,p2,p3])</span><br><span class="line"> 		<span class="built_in">console</span>.log(result);<span class="comment">//promise1 promise2 promise3</span></span><br><span class="line">   &#125; <span class="function"><span class="title">catch</span>(<span class="params">err</span>)</span> &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">&quot;执行失败&quot;</span>,err)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h5 id="session设置"><a href="#session设置" class="headerlink" title="session设置"></a>session设置</h5><p>安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm i --save express-session cookie-parser</span></span><br></pre></td></tr></table></figure>
 
+<p>app.js</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(session(&#123;</span><br><span class="line">  secret: <span class="string">&#x27;secret&#x27;</span>, <span class="comment">// 用于对 sessionID 进行签名</span></span><br><span class="line">  name: <span class="string">&#x27;myApp&#x27;</span>, <span class="comment">// 直接指定浏览器端生成的 cookie 的名字</span></span><br><span class="line">  cookie: &#123;</span><br><span class="line">    maxAge: <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> <span class="comment">// 过期时间，毫秒</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// store: session // session 存储方式，默认存储在 内存中</span></span><br><span class="line">  saveUninitialized: <span class="literal">false</span>, <span class="comment">// 是否将未初始化的 session 进行存储</span></span><br><span class="line">  resave: <span class="literal">true</span>, <span class="comment">// 是否每次重新保存对话</span></span><br><span class="line">  rolling: <span class="literal">true</span> <span class="comment">// 在线时每隔一定时间去刷新 session</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由拦截</span></span><br><span class="line">app.all(<span class="string">&#x27;*&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pat = <span class="regexp">/\/pages\/login.html|\/users\/login|\.js$|\.css$|\.ico$/</span>;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">!pat.test(req.url)</span>)</span> &#123; <span class="comment">// 判断需要权限的页面</span></span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">req.session.sign</span>)</span> &#123; <span class="comment">// 是否已经登陆了</span></span><br><span class="line">      next(); <span class="comment">// 放行</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res.redirect(<span class="string">&#x27;/pages/login.html&#x27;</span>); <span class="comment">// 未登录重定向到登录页</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next(); <span class="comment">// 放行</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<h5 id="ejs-模板"><a href="#ejs-模板" class="headerlink" title="ejs 模板"></a>ejs 模板</h5><p>  &gt;&gt; 渲染</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">res.render(模板引擎的文件名, 传递给模板引擎的参数);</span><br><span class="line"> res.render(<span class="string">&#x27;index&#x27;</span>, &#123; </span><br><span class="line">  title: <span class="string">&#x27;主页&#x27;</span>,</span><br><span class="line">  msg: <span class="string">&#x27;&lt;a href=&quot;&quot;&gt;您好&lt;/a&gt;&#x27;</span>,</span><br><span class="line">  user: &#123;</span><br><span class="line">   name: <span class="string">&#x27;fay&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  list: [<span class="string">&#x27;星期一&#x27;</span>, <span class="string">&#x27;星期二&#x27;</span>, <span class="string">&#x27;星期三&#x27;</span>]</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>* &lt;%= 变量名 %&gt; 用于显示 js 变量的，如果带有标签，则不会渲染标签</p>
+   <p> <%= msg %> </p>
+
+<p>  * &lt;%- 变量名 %&gt; 用于显示 js 变量，如果有标签，会将标签进行渲染</p>
+   <p> <%- msg %> </p>
+
+<p>  * &lt;% 表达式 %&gt; 用于执行 js 代码，而不是展示内容<br>   &lt;% if(user) { %&gt;</p>
+<p>  &lt;%- include(‘header’) -%&gt;</p>
 ]]></content>
       <categories>
         <category>JavaScript</category>
@@ -181,8 +293,8 @@ $#    参数个数
 =====================</code></pre>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">预定义变量</span><br><span class="line"><span class="meta">$</span><span class="bash">$	当前进程PID</span></span><br><span class="line"><span class="meta">$</span><span class="bash">!	后台运行最后一个PID</span></span><br><span class="line"><span class="meta">$</span><span class="bash">?	最后一次命名的返回状态 0√</span></span><br><span class="line">========================</span><br><span class="line"></span><br><span class="line">运算(2+3)*4</span><br><span class="line"><span class="meta">#</span><span class="bash">方式一$()</span></span><br><span class="line">RESULT1=$(((2+3)*4))</span><br><span class="line"><span class="meta">#</span><span class="bash">方式二$[]  推荐方式</span></span><br><span class="line">RESULT2=$[(2+3)*4]</span><br><span class="line"><span class="meta">#</span><span class="bash">方式三 expr</span></span><br><span class="line">................</span><br><span class="line">==========================</span><br><span class="line">条件判断</span><br><span class="line">if[ condition ] </span><br><span class="line">then</span><br><span class="line">	echo&quot;&quot;</span><br><span class="line">elif[ condirion ] </span><br><span class="line">	echo&quot;&quot;</span><br><span class="line">fi</span><br><span class="line"> -lt小于 -le小于等于  -gt大于 -ge大于等于  -eq等于 -ne不等于</span><br><span class="line">-r/-w/-x 有读/写/执行的权限</span><br><span class="line">-f文件存在并且时一个常规文件 -e文件存在 -d文件存在并是目录</span><br><span class="line">------------------------</span><br><span class="line">case $变量名 in</span><br><span class="line">&quot;值1&quot;)</span><br><span class="line">echo&quot;1&quot;</span><br><span class="line">;;</span><br><span class="line">&quot;值2&quot;)</span><br><span class="line">echo&quot;2&quot;</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo&quot;other&quot;</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line">==================</span><br><span class="line"></span><br><span class="line">循环</span><br><span class="line">for 变量 in 值1 值2 值3...</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done </span><br><span class="line">-------------------------</span><br><span class="line">for ((i=0;i&lt;100;i++))</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done </span><br><span class="line">--------------------------</span><br><span class="line">while[ condition ]</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done </span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">read读取控制台输入</span><br><span class="line">read -p  &quot;读取时的提示符&quot; -t指定读取时等待的时间(秒)	NUM</span><br><span class="line"></span><br><span class="line">================</span><br><span class="line">函数</span><br><span class="line">function getSum()&#123;</span><br><span class="line">	SUM=$[$n1+$n2]</span><br><span class="line">&#125;</span><br><span class="line">read -p &quot;输入n1&quot; n1</span><br><span class="line">read -p &quot;输入n2&quot; n2</span><br><span class="line"><span class="meta">#</span><span class="bash">调用</span></span><br><span class="line">getSum $n1 $n2</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>git</tag>
         <tag>Linux</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -338,19 +450,10 @@ $#    参数个数
 </tr>
 </tbody></table>
 <h5 id="用户权限配置-AuthenticationManagerBuilder-："><a href="#用户权限配置-AuthenticationManagerBuilder-：" class="headerlink" title="用户权限配置(AuthenticationManagerBuilder)："></a>用户权限配置(AuthenticationManagerBuilder)：</h5><p>通过重载该方法，可配置user-detail（用户详细信息）服务。 </p>
-<h6 id="在内存中装配角色-权限信息"><a href="#在内存中装配角色-权限信息" class="headerlink" title="在内存中装配角色,权限信息"></a>在内存中装配角色,权限信息</h6><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       auth.inMemoryAuthentication()</span><br><span class="line">           .passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">           .withUser(<span class="string">&quot;tom&quot;</span>)</span><br><span class="line">           .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br><span class="line">           .roles(<span class="string">&quot;ADMIN&quot;</span>)	<span class="comment">//设置角色</span></span><br><span class="line">           .and()</span><br><span class="line">           .withUser(<span class="string">&quot;qwe&quot;</span>)</span><br><span class="line">           .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br><span class="line">           .authorities(<span class="string">&quot;UPDATE&quot;</span>);	<span class="comment">//设置权限</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="在内存中装配角色-权限信息"><a href="#在内存中装配角色-权限信息" class="headerlink" title="在内存中装配角色,权限信息"></a>在内存中装配角色,权限信息</h6><p>没有角色和权限的用户无法登录</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       auth.inMemoryAuthentication()</span><br><span class="line">           .passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">           .withUser(<span class="string">&quot;tom&quot;</span>)</span><br><span class="line">           .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br><span class="line">           .roles(<span class="string">&quot;ADMIN&quot;</span>)	<span class="comment">//设置角色</span></span><br><span class="line">           .and()</span><br><span class="line">           .withUser(<span class="string">&quot;qwe&quot;</span>)</span><br><span class="line">           .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br><span class="line">           .authorities(<span class="string">&quot;UPDATE&quot;</span>);	<span class="comment">//设置权限</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p><em>注意:SpringSecurity会在角色字符串前面加”ROLE”前缀,从数据库查询得到的用户信息,角色信息,权限信息需要之际手动组装,组装时同样要在角色字符串前面加”ROLE_”</em></p>
-<h6 id="根据表单提交的用户名从数据库查询User对象-并装配角色-权限信息"><a href="#根据表单提交的用户名从数据库查询User对象-并装配角色-权限信息" class="headerlink" title="根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息"></a>根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息</h6><p>思路:</p>
-<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201110162503.png" alt="根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息"></p>
-<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201110162818.png"></p>
-<p>代码:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyUserDetailsService</span> <span class="keyword">implements</span> <span class="title">UserDetailsService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDetails <span class="title">loadUserByUsername</span><span class="params">(String s)</span> <span class="keyword">throws</span> UsernameNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//1.数据库查询admin对象</span></span><br><span class="line">        Admin admin = AdminMapper.select....byName();</span><br><span class="line">        <span class="comment">//2.给admin设置角色权限信息</span></span><br><span class="line">        List&lt;GrantedAuthority&gt; authorities = <span class="keyword">new</span> ArrayList&lt;GrantedAuthority&gt;();</span><br><span class="line">        authorities.add(<span class="keyword">new</span> SimpleGrantedAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>));</span><br><span class="line">        authorities.add(<span class="keyword">new</span> SimpleGrantedAuthority(<span class="string">&quot;UPDATE&quot;</span>));</span><br><span class="line">        <span class="comment">//3.把admin对象和authorities封装到UserDetails中</span></span><br><span class="line">        String password = admin.getPassword();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(username,password,authorities);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span>	</span><br><span class="line">MyUserDetailsService myUserDetailsService;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       auth.userDetailsService(myUserDetailsService)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <table>
 <thead>
 <tr>
@@ -407,6 +510,30 @@ $#    参数个数
 <td align="left">定义账号</td>
 </tr>
 </tbody></table>
+<h6 id="根据表单提交的用户名从数据库查询User对象-并装配角色-权限信息"><a href="#根据表单提交的用户名从数据库查询User对象-并装配角色-权限信息" class="headerlink" title="根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息"></a>根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息</h6><p>思路:</p>
+<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201110162503.png" alt="根据表单提交的用户名从数据库查询User对象,并装配角色,权限信息"></p>
+<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201110162818.png"></p>
+<p>代码:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyUserDetailsService</span> <span class="keyword">implements</span> <span class="title">UserDetailsService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDetails <span class="title">loadUserByUsername</span><span class="params">(String s)</span> <span class="keyword">throws</span> UsernameNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//1.数据库查询admin对象</span></span><br><span class="line">        Admin admin = AdminMapper.select....byName();</span><br><span class="line">        <span class="comment">//2.给admin设置角色权限信息</span></span><br><span class="line">        List&lt;GrantedAuthority&gt; authorities = <span class="keyword">new</span> ArrayList&lt;GrantedAuthority&gt;();</span><br><span class="line">        authorities.add(<span class="keyword">new</span> SimpleGrantedAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>));</span><br><span class="line">        authorities.add(<span class="keyword">new</span> SimpleGrantedAuthority(<span class="string">&quot;UPDATE&quot;</span>));</span><br><span class="line">        <span class="comment">//3.把admin对象和authorities封装到UserDetails中</span></span><br><span class="line">        String password = admin.getPassword();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(username,password,authorities);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span>	</span><br><span class="line">MyUserDetailsService myUserDetailsService;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       auth.userDetailsService(myUserDetailsService)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>SpringSecurity处理完登录操作之后把登录成功的User对象以principal(主体)属性名存入了UsernamePasswordAuthenticationToken对象</em></p>
+<p>在页面使用时:</p>
+<p>1.引入SpringSecurity标签库</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">&quot;security&quot;</span> <span class="attr">uri</span>=<span class="string">&quot;http://www.springframework.org/security/tags&quot;</span> %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.获取(UsernamePasswordAuthenticationToken会擦除密码)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">security:authentication</span> <span class="attr">property</span>=<span class="string">&quot;principal.original.username&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="使用注解配分角色-权限信息"><a href="#使用注解配分角色-权限信息" class="headerlink" title="使用注解配分角色,权限信息"></a>使用注解配分角色,权限信息</h6><p>1.在配置类启用全局方法权限控制,并设置prePostEnabled=true,保证@PreAuthority,@PostAuthority,@PreFilter,@PostFilter生效</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebAppSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> configure........</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.在需要加权限验证的方法上加@PreAuthorize</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PreAuthorize(&quot;hasRole(&#x27;name&#x27;)&quot;)</span></span><br><span class="line">   <span class="meta">@RequestMapping(&quot;/role/get/role.json&quot;)</span></span><br><span class="line">   <span class="keyword">public</span> ResultEntity&lt;PageInfo&lt;Role&gt;&gt; getPageInfo() &#123;</span><br><span class="line">       .........</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h5><p>用来生成token防止跨站请求伪造,需要在表单添加</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;$&#123;_csrf.parameterName&#125;&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;_csrf.token&#125;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -440,7 +567,10 @@ $#    参数个数
 <h5 id="Spring-Security-登陆报错："><a href="#Spring-Security-登陆报错：" class="headerlink" title="Spring Security 登陆报错："></a>Spring Security 登陆报错：</h5><p>There is no PasswordEncoder mapped for the id “null”:</p>
 <p>必须设置密码的加密方式</p>
 <p>5.0以后对于密码的管理有些变化,现如今Spring Security中密码的存储格式是“{id}…………”。前面的id是加密方式，id可以是bcrypt、sha256等，后面跟着的是加密后的密码。也就是说，程序拿到传过来的密码的时候，会首先查找被“{”和“}”包括起来的id，来确定后面的密码是被怎么样加密的，如果找不到就认为id是null。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">auth.passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">    .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">auth.passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">    .password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">&quot;123123&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<h5 id="PreAuthorize-无法拦截："><a href="#PreAuthorize-无法拦截：" class="headerlink" title="@PreAuthorize()无法拦截："></a>@PreAuthorize()无法拦截：</h5><p>在使用@PreAuthorize()做拦截时,如果同时也设置了@EnableGlobalMethodSecurity(prePostEnabled = true),还是无法拦截,可能时因为在扫描SpringSecurity时是使用Spring扫描,而拦截注解加在了请求上,将注解加在Service文件或者是Mapper文件即可,反之亦然</p>
+]]></content>
       <categories>
         <category>Java</category>
         <category>Spring</category>
