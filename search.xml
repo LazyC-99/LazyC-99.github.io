@@ -5,6 +5,8 @@
     <url>/2020/11/11/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h2><p><strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong>它是目前最流行的 Linux 容器解决方案。</p>
 <p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p>
+<a id="more"></a>
+
 <h2 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h2><ol>
 <li><p>Docker要求CentOS系统内核版本高于3.10,查看CentOS内核版本:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> uname -r</span></span><br></pre></td></tr></table></figure>
@@ -545,8 +547,6 @@ $#    参数个数
 
 <p>自定义加密方式可继承PasswordEncoder,重写encode(),matches()方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPasswordEncoder</span> <span class="keyword">implements</span> <span class="title">PasswordEncoder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">encode</span><span class="params">(CharSequence charSequence)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//加密密码</span></span><br><span class="line">        <span class="keyword">return</span> MyEncoder(charSequence);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(CharSequence charSequence, String encodedPassword)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//加密明文密码</span></span><br><span class="line">        String formPassword = MyEncoder(charSequence);</span><br><span class="line">        <span class="comment">//数据库密码</span></span><br><span class="line">        String databasePassword = encodedPassword;</span><br><span class="line">        <span class="comment">//比较</span></span><br><span class="line">        <span class="keyword">return</span> Objects.equals(formPassword,databasePassword);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 
 
