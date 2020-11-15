@@ -247,6 +247,211 @@
       </tags>
   </entry>
   <entry>
+    <title>Redis相关使用</title>
+    <url>/2020/11/13/Redis%E7%9B%B8%E5%85%B3%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><p>Redis是现在最受欢迎的NoSQL数据库之一，Redis是一个使用ANSI C编写的开源、包含多种数据结构、支持网络、基于内存、可选持久性的键值对存储数据库，其具备如下特性：</p>
+<a id="more"></a>
+
+<ul>
+<li>基于内存运行，性能高效</li>
+<li>支持分布式，理论上可以无限扩展</li>
+<li>key-value存储系统</li>
+<li>开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API</li>
+</ul>
+<h4 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>NoSQL(NoSQL = Not Only SQL )，意即”不仅仅是SQL”，泛指非关系型的数据库。</li>
+<li>NoSQL不依赖业务逻辑方式存储,而以简单的key-value模式存储,因此大大的增加了数据库的扩展能力</li>
+<li>不遵循SQL标准</li>
+<li>不支持ACID(原子性,一致性,独立性,持久性)</li>
+<li>远超SQL的性能</li>
+</ul>
+<h5 id="NoSQL适用场景"><a href="#NoSQL适用场景" class="headerlink" title="NoSQL适用场景"></a>NoSQL适用场景</h5><ul>
+<li>对数据的高并发读写</li>
+<li>海量数据的读写</li>
+<li>对数据高可扩展性的</li>
+</ul>
+<h5 id="不适用场景"><a href="#不适用场景" class="headerlink" title="不适用场景"></a>不适用场景</h5><ul>
+<li>需要事务支持</li>
+<li>基于sql的结构化查询存储,处理复杂的关系,需要及席查询(条件查询)</li>
+</ul>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><h5 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">systemctl start redis</td>
+<td align="center">启动redis</td>
+</tr>
+<tr>
+<td align="center">systemctl stop redis</td>
+<td align="center">停止redis</td>
+</tr>
+<tr>
+<td align="center">systemctl status redis</td>
+<td align="center">查看redis运行状态</td>
+</tr>
+<tr>
+<td align="center">ps ef</td>
+<td align="center">grep redis</td>
+</tr>
+<tr>
+<td align="center">redis-cli</td>
+<td align="center">开启(本机)客户端</td>
+</tr>
+<tr>
+<td align="center">redis-cli -h 127.0.0.1 -p6379</td>
+<td align="center">开启客户端</td>
+</tr>
+</tbody></table>
+<h5 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">keys *</td>
+<td align="center">查询当前库的所有键</td>
+</tr>
+<tr>
+<td align="center">exists <key></td>
+<td align="center">判断某个键是否存在</td>
+</tr>
+<tr>
+<td align="center">type <key></td>
+<td align="center">查看键的类型</td>
+</tr>
+<tr>
+<td align="center">del  <key></td>
+<td align="center">删除某个键</td>
+</tr>
+<tr>
+<td align="center">expire <key> <seconds></td>
+<td align="center">为键值设置过期的时间,单位秒</td>
+</tr>
+<tr>
+<td align="center">ttl <key></td>
+<td align="center">查看还有多少秒过期,-1表示永不过期,-2表示已过期</td>
+</tr>
+<tr>
+<td align="center">dbsize</td>
+<td align="center">查看当前数据库的key的数量</td>
+</tr>
+<tr>
+<td align="center">Flushdb</td>
+<td align="center">清空当前库</td>
+</tr>
+<tr>
+<td align="center">Flushall</td>
+<td align="center">清空所有库</td>
+</tr>
+</tbody></table>
+<h5 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">get <key></td>
+<td align="center">查询对应键值</td>
+</tr>
+<tr>
+<td align="center">set <key><value></td>
+<td align="center">添加键值对</td>
+</tr>
+<tr>
+<td align="center">append <key><value></td>
+<td align="center">将value最佳到指定键值末</td>
+</tr>
+<tr>
+<td align="center">strlen <key></td>
+<td align="center">获得值的长度</td>
+</tr>
+<tr>
+<td align="center">setnx <key><value></td>
+<td align="center">只有在key不存在时设置key的值</td>
+</tr>
+<tr>
+<td align="center">incr / decr <key></td>
+<td align="center">将key中存储的数字值增1/减1(只能对数字值操作,如果为空,新增值为1/-1)</td>
+</tr>
+<tr>
+<td align="center">incrby / decrby <key> &lt;步长&gt;</td>
+<td align="center">将key中存储的数字增减,自定义步长</td>
+</tr>
+<tr>
+<td align="center">mset<key1><value1> / mget <key1> <key2></td>
+<td align="center">多个添加获取</td>
+</tr>
+<tr>
+<td align="center">getrange <key><start><end></td>
+<td align="center">获取值的范围,类似java中的substring</td>
+</tr>
+<tr>
+<td align="center">setrange <key><start><value></td>
+<td align="center">用<value>覆写<key>所存储的字符串值,从<start>开始</td>
+</tr>
+</tbody></table>
+<p> 默认16个数据库,类似数组下标从0开始,初始默认使用0号库</p>
+<p>使用 select <id> 来切换数据库吧</p>
+<h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><h5 id="ip地址的绑定-bind"><a href="#ip地址的绑定-bind" class="headerlink" title="ip地址的绑定(bind)"></a>ip地址的绑定(bind)</h5><ul>
+<li>默认情况下bind = 127.0.0.1只能接受本机访问,不写无限制接收任何ip访问(生产环境要写应用服务器的地址)</li>
+<li>如果开启了protexted-mode,在没有设定bind ip 且没有设密码的情况下,只允许接收本机访问</li>
+</ul>
+<h5 id="tcp-backlog"><a href="#tcp-backlog" class="headerlink" title="tcp-backlog"></a>tcp-backlog</h5><ul>
+<li>请求到达后至少接受进程处理前的队列</li>
+<li>backlog队列总和 = 未完成三次握手队列 + 已经完成三次握手的队列</li>
+<li>高并发环境tcp-backlog设置值跟超时时限内的Redis吞吐量决定</li>
+</ul>
+<h5 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h5><ul>
+<li>一个空闲的客户端维持多少秒会关闭,0为永不关闭</li>
+</ul>
+<h5 id="TCP-keepalive"><a href="#TCP-keepalive" class="headerlink" title="TCP keepalive"></a>TCP keepalive</h5><ul>
+<li>对访问客户端的一种心跳检测,每n秒检测一次,官方推荐为60秒</li>
+</ul>
+<h5 id="requirepass"><a href="#requirepass" class="headerlink" title="requirepass"></a>requirepass</h5><ul>
+<li>设置永久密码</li>
+</ul>
+<h4 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h4><h5 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="连接Redis"><a href="#连接Redis" class="headerlink" title="连接Redis"></a>连接Redis</h5> <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;xxx.xxx.xx.xx&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">jedis.ping();</span><br><span class="line">jedus.close();</span><br></pre></td></tr></table></figure>
+
+<h4 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><ul>
+<li><p>Redis事务是一个单独的隔离操作: 事务中的所有命令都会序列化, 按顺序的执行,事务在执行的过程中, 不iu被其他客户端发送来的命令请求所打断</p>
+</li>
+<li><p>Redis事务的主要作用就是串联多个命令防止别人的命令插队</p>
+</li>
+</ul>
+<h5 id="Multi-Exec-discard"><a href="#Multi-Exec-discard" class="headerlink" title="Multi, Exec, discard"></a>Multi, Exec, discard</h5><ul>
+<li>从输入Multi命令开始, 输入的命令都会依次进入命令队列中, 但不会执行, 直到输入Exec后, Redis会将之前的命令队列中的命令依次执行.</li>
+<li>组队的过程中可以通过discard来放弃组队.</li>
+</ul>
+<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155543.png"></p>
+<h5 id="事务的错误处理"><a href="#事务的错误处理" class="headerlink" title="事务的错误处理"></a>事务的错误处理</h5><ul>
+<li>组队中某个命令如果出现了报告错误, 执行时整个的队友队列都会被取消</li>
+</ul>
+<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155931.png" alt="事务的错误处理"></p>
+<ul>
+<li>如果执行阶段某个命令报出了错误, 则只有报错的命令不会被执行, 而其他的命令都会执行,不会回滚</li>
+</ul>
+<p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115160127.png" alt="事务的错误处理"></p>
+<h5 id="WATCH"><a href="#WATCH" class="headerlink" title="WATCH"></a>WATCH</h5><p>在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个)key ，如果在事务执行之前这个(或这些) key被其他命令所改动，那么事务将被打断，unwatch取消监视</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git&amp;Linux基本命令</title>
     <url>/2020/11/07/git-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>git和Linux的一些基本命令操作</p>
@@ -297,6 +502,57 @@ $#    参数个数
       <tags>
         <tag>Linux</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压力测试工具</title>
+    <url>/2020/11/15/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h4 id="AB工具简介"><a href="#AB工具简介" class="headerlink" title="AB工具简介"></a>AB工具简介</h4><p>ab全称为：apache bench</p>
+<p>ab的原理：ab命令会创建多个并发访问线程，模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的，因此，它既可以用来测试apache的负载压力，也可以测试nginx、lighthttp、tomcat、IIS等其它Web服务器的压力。</p>
+<a id="more"></a>
+
+<p>ab命令对发出负载的计算机要求很低，它既不会占用很高CPU，也不会占用很多内存。但却会给目标服务器造成巨大的负载，其原理类似CC攻击。自己测试使用也需要注意，否则一次上太多的负载。可能造成目标服务器资源耗完，严重时甚至导致死机。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install httpd-tools</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-n</td>
+<td align="center">请求数(测试会话中所执行的请求个数)</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="center">并发数(一次产生的请求个数</td>
+</tr>
+<tr>
+<td align="center">-t</td>
+<td align="center">测试所进行的最大秒数</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td align="center">指定含有请求数据的文件</td>
+</tr>
+<tr>
+<td align="center">-T</td>
+<td align="center">请求数据所使用的Content-type头信息</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>tools</tag>
       </tags>
   </entry>
   <entry>
