@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201120150542.png">
 <meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201120150725105.png">
 <meta property="article:published_time" content="2020-11-23T09:01:24.000Z">
-<meta property="article:modified_time" content="2020-11-23T02:10:40.370Z">
+<meta property="article:modified_time" content="2020-12-01T08:41:59.215Z">
 <meta property="article:author" content="LazyC-99">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-11-23 17:01:24 / 修改时间：10:10:40" itemprop="dateCreated datePublished" datetime="2020-11-23T17:01:24+08:00">2020-11-23</time>
+              <time title="创建时间：2020-11-23 17:01:24" itemprop="dateCreated datePublished" datetime="2020-11-23T17:01:24+08:00">2020-11-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-01 16:41:59" itemprop="dateModified" datetime="2020-12-01T16:41:59+08:00">2020-12-01</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -242,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -333,6 +339,17 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-zuul<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>访问: <span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMTp6dXVs56uv5Y+j">http://127.0.0.1:zuul端口<i class="fa fa-external-link-alt"></i></span> / 微服务名称 / 具体功能地址</p>
+<p><strong>ZuulFilter过滤类</strong></p>
+<p><code>shouldFilter</code>：返回一个boolean类型来判断该过滤器是否要执行，所以通过此函数可实现过滤器的开关。</p>
+<p><code>filterType</code>：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下：</p>
+<ul>
+<li><code>pre</code>：可以在请求被路由之前调用</li>
+<li><code>route</code>：在路由请求时候被调用</li>
+<li><code>post</code>：在route和error过滤器之后被调用</li>
+<li><code>error</code>：处理请求时发生错误时被调用</li>
+</ul>
+<p><code>filterOrder</code>：通过int值来定义过滤器的执行顺序</p>
+<p><code>run</code>：过滤器的具体实现功能。</p>
 <h4 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h4><h6 id="fallback-method-wasn’t-found"><a href="#fallback-method-wasn’t-found" class="headerlink" title="fallback method wasn’t found"></a>fallback method wasn’t found</h6><p> 备用方法 和 原方法 的参数类型，个数不同造成的</p>
 <h6 id="Unable-to-connect-to-Command-Metric-Stream"><a href="#Unable-to-connect-to-Command-Metric-Stream" class="headerlink" title="Unable to connect to Command Metric Stream."></a>Unable to connect to Command Metric Stream.</h6><p>dashboard无法显示,控制台显示<span class="exturl" data-url="aHR0cDovL3h4eC54eHgueHg6eHh4L2h5c3RyaXguc3RyZWFt">http://xxx.xxx.xx:xxx/hystrix.stream<i class="fa fa-external-link-alt"></i></span> is not in the allowed list of proxy host names.  If it should be allowed add it to hystrix.dashboard.proxyStreamAllowList. </p>
 <p>解决: 配置</p>
@@ -380,7 +397,10 @@
     <a href="/2020/11/15/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" rel="prev" title="ab压力测试工具">
       <i class="fa fa-chevron-left"></i> ab压力测试工具
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/01/Session%E5%85%B1%E4%BA%AB%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="Session共享的实现">
+      Session共享的实现 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -455,7 +475,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -509,12 +529,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
 </div>
 
         
