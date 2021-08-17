@@ -23,18 +23,18 @@
   <meta name="description" content="web服务: express, koa, hapi模板引擎: handlebars, ejs, jade前端打包: webpak, fis,任务管理: gulp单元测试: karma, mocha, jasmine包管理器: npm, cnpm, yarn守护进程: pm2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs学习">
-<meta property="og:url" content="http://example.com/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://example.com/2021/07/26/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="LazyC-99">
 <meta property="og:description" content="web服务: express, koa, hapi模板引擎: handlebars, ejs, jade前端打包: webpak, fis,任务管理: gulp单元测试: karma, mocha, jasmine包管理器: npm, cnpm, yarn守护进程: pm2">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-06T06:09:34.728Z">
-<meta property="article:modified_time" content="2020-11-20T06:55:09.835Z">
+<meta property="article:published_time" content="2021-07-26T13:47:45.514Z">
+<meta property="article:modified_time" content="2021-07-26T13:47:45.514Z">
 <meta property="article:author" content="LazyC-99">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Node.js">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://example.com/2021/07/26/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/26/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
@@ -223,23 +223,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-06 14:09:34" itemprop="dateCreated datePublished" datetime="2020-11-06T14:09:34+08:00">2020-11-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-20 14:55:09" itemprop="dateModified" datetime="2020-11-20T14:55:09+08:00">2020-11-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
+              <time title="创建时间：2021-07-26 21:47:45" itemprop="dateCreated datePublished" datetime="2021-07-26T21:47:45+08:00">2021-07-26</time>
             </span>
 
           
@@ -255,14 +239,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -316,47 +300,6 @@
 <p>解决办法:进入mysql修改密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;自己的密码&#39;;</span><br></pre></td></tr></table></figure>
 
-<h5 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h5><p>JS 是单线程运行的，只能执行完一个任务，然后再去执行下一个任务。</p>
-<p>异步编程不进入主线程，而是进入任务队列，当满足触发条件之后，才可以在任务队列中执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; 宏任务</span><br><span class="line">宏任务优先级是低于微任务的，主要包含：script、setTimeout、setInterval 等</span><br><span class="line"></span><br><span class="line">&gt;&gt; 微任务</span><br><span class="line">包括 Promise 的 then 、process.nextTick 等。</span><br><span class="line"></span><br><span class="line">&gt;&gt; Event Loop 执行顺序：</span><br><span class="line">* 遇到同步代码，直接执行，</span><br><span class="line">* 遇到宏任务直接放到宏任务队列中，</span><br><span class="line">* 遇到 Promise 直接执行，然后遇到 then，放入微任务队列，</span><br><span class="line">* 本轮循环结束时，先查看微任务队列，执行所有的微任务，</span><br><span class="line">* 下一次环循时，先执行一个宏任务，</span><br><span class="line"></span><br><span class="line">注意：微任务是每次全部执行，宏任务是每次只执行一项。</span><br></pre></td></tr></table></figure>
-
-<h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><p>ECMAscript 6 原生提供了 Promise 对象.属于异步编程的一种解决方案</p>
-<p>Promise 对象代表了未来将要发生的事件，用来传递异步操作的消息。</p>
-<h6 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h6><ol>
-<li>主要用于异步计算</li>
-<li>可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果</li>
-<li>可以在对象之间传递和操作promise，帮助我们处理队列</li>
-</ol>
-<h6 id="Promise状态"><a href="#Promise状态" class="headerlink" title="Promise状态"></a>Promise状态</h6><ul>
-<li>Pending Promise 对象创建时的初始状态</li>
-<li>Fulfilled 成功状态</li>
-<li>Rejected 失败状态</li>
-</ul>
-<h6 id="使用语法"><a href="#使用语法" class="headerlink" title="使用语法"></a>使用语法</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">                    <span class="function"><span class="title">if</span>(<span class="params">失败</span>)</span> &#123;</span><br><span class="line">                        reject();</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="function"><span class="title">if</span>(<span class="params">成功</span>)</span> &#123;</span><br><span class="line">                        resolve()</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">promise</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; <span class="comment">// 执行成功相应的代码</span></span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123; <span class="comment">// 捕获错误</span></span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<h6 id="Promose-all"><a href="#Promose-all" class="headerlink" title="Promose.all()"></a>Promose.all()</h6><p>主要解决并发请求的问题,参数是一个数组,数组中每个元素都是promise,一个执行失败则全部失败,必须所有的执行成功才会成功.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">    .all([promise1,promise2,promise3])</span><br></pre></td></tr></table></figure>
-
-<h6 id="async-await-终极解决方案"><a href="#async-await-终极解决方案" class="headerlink" title="async/await(终极解决方案)"></a>async/await(终极解决方案)</h6><p>基于promise的一个解决一部的方案</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">try</span> &#123; <span class="keyword">var</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1,p2,p3])</span><br><span class="line"> 		<span class="built_in">console</span>.log(result);<span class="comment">//promise1 promise2 promise3</span></span><br><span class="line">   &#125; <span class="function"><span class="title">catch</span>(<span class="params">err</span>)</span> &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">&quot;执行失败&quot;</span>,err)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="session设置"><a href="#session设置" class="headerlink" title="session设置"></a>session设置</h5><p>安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm i --save express-session cookie-parser</span></span><br></pre></td></tr></table></figure>
-
-<p>app.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(session(&#123;</span><br><span class="line">  secret: <span class="string">&#x27;secret&#x27;</span>, <span class="comment">// 用于对 sessionID 进行签名</span></span><br><span class="line">  name: <span class="string">&#x27;myApp&#x27;</span>, <span class="comment">// 直接指定浏览器端生成的 cookie 的名字</span></span><br><span class="line">  cookie: &#123;</span><br><span class="line">    maxAge: <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> <span class="comment">// 过期时间，毫秒</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// store: session // session 存储方式，默认存储在 内存中</span></span><br><span class="line">  saveUninitialized: <span class="literal">false</span>, <span class="comment">// 是否将未初始化的 session 进行存储</span></span><br><span class="line">  resave: <span class="literal">true</span>, <span class="comment">// 是否每次重新保存对话</span></span><br><span class="line">  rolling: <span class="literal">true</span> <span class="comment">// 在线时每隔一定时间去刷新 session</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由拦截</span></span><br><span class="line">app.all(<span class="string">&#x27;*&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pat = <span class="regexp">/\/pages\/login.html|\/users\/login|\.js$|\.css$|\.ico$/</span>;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">!pat.test(req.url)</span>)</span> &#123; <span class="comment">// 判断需要权限的页面</span></span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">req.session.sign</span>)</span> &#123; <span class="comment">// 是否已经登陆了</span></span><br><span class="line">      next(); <span class="comment">// 放行</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res.redirect(<span class="string">&#x27;/pages/login.html&#x27;</span>); <span class="comment">// 未登录重定向到登录页</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next(); <span class="comment">// 放行</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="ejs-模板"><a href="#ejs-模板" class="headerlink" title="ejs 模板"></a>ejs 模板</h5><p>  &gt;&gt; 渲染</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">res.render(模板引擎的文件名, 传递给模板引擎的参数);</span><br><span class="line"> res.render(<span class="string">&#x27;index&#x27;</span>, &#123; </span><br><span class="line">  title: <span class="string">&#x27;主页&#x27;</span>,</span><br><span class="line">  msg: <span class="string">&#x27;&lt;a href=&quot;&quot;&gt;您好&lt;/a&gt;&#x27;</span>,</span><br><span class="line">  user: &#123;</span><br><span class="line">   name: <span class="string">&#x27;fay&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  list: [<span class="string">&#x27;星期一&#x27;</span>, <span class="string">&#x27;星期二&#x27;</span>, <span class="string">&#x27;星期三&#x27;</span>]</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>* &lt;%= 变量名 %&gt; 用于显示 js 变量的，如果带有标签，则不会渲染标签</p>
-   <p> <%= msg %> </p>
-
-<p>  * &lt;%- 变量名 %&gt; 用于显示 js 变量，如果有标签，会将标签进行渲染</p>
-   <p> <%- msg %> </p>
-
-<p>  * &lt;% 表达式 %&gt; 用于执行 js 代码，而不是展示内容<br>   &lt;% if(user) { %&gt;</p>
-<p>  &lt;%- include(‘header’) -%&gt;</p>
 
     </div>
 
@@ -396,10 +339,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/11/07/git-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" rel="next" title="git&Linux基本命令">
-      git&Linux基本命令 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/08/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="MySQL数据库">
+      <i class="fa fa-chevron-left"></i> MySQL数据库
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="next" title="数据结构与算法">
+      数据结构与算法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -459,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#npm"><span class="nav-number">1.</span> <span class="nav-text">npm</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">依赖安装</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#express%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">express模块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">项目初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">2.2.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.3.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#app-js%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">app.js文件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5mysql"><span class="nav-number">3.</span> <span class="nav-text">连接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">异步编程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise"><span class="nav-number">5.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">5.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Promise%E7%8A%B6%E6%80%81"><span class="nav-number">5.2.</span> <span class="nav-text">Promise状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">5.3.</span> <span class="nav-text">使用语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Promose-all"><span class="nav-number">5.4.</span> <span class="nav-text">Promose.all()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#async-await-%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">5.5.</span> <span class="nav-text">async&#x2F;await(终极解决方案)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#session%E8%AE%BE%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">session设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ejs-%E6%A8%A1%E6%9D%BF"><span class="nav-number">7.</span> <span class="nav-text">ejs 模板</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#npm"><span class="nav-number">1.</span> <span class="nav-text">npm</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">依赖安装</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#express%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">express模块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">项目初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">2.2.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.3.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#app-js%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">app.js文件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5mysql"><span class="nav-number">3.</span> <span class="nav-text">连接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,20 +421,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -529,12 +475,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">58k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">53 分钟</span>
 </div>
 
         
