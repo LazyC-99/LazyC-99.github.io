@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Netty网络通讯IO模型 BIO(传统阻塞IO): 服务器实现模式为一个连接一个线程   NIO(同步非阻塞IO): 面向缓冲区(块)编程，服务器实现模式为一个线程处理多个请求(连接),请求都会注册到多路复用器上，多路复用器轮询到连接有I&#x2F;O请求就进行处理     每个channel都会对应一个Bufer Selector 对对应一个线程，一个线程对应多个channel(连接) 该图反应了有三个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty网络通讯">
+<meta property="og:url" content="http://example.com/2022/08/02/Netty%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/index.html">
+<meta property="og:site_name" content="LazyC-99">
+<meta property="og:description" content="Netty网络通讯IO模型 BIO(传统阻塞IO): 服务器实现模式为一个连接一个线程   NIO(同步非阻塞IO): 面向缓冲区(块)编程，服务器实现模式为一个线程处理多个请求(连接),请求都会注册到多路复用器上，多路复用器轮询到连接有I&#x2F;O请求就进行处理     每个channel都会对应一个Bufer Selector 对对应一个线程，一个线程对应多个channel(连接) 该图反应了有三个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220802163623607.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220802163844851.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220805163842676.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220805163939115.png">
+<meta property="article:published_time" content="2022-08-02T08:03:23.000Z">
+<meta property="article:modified_time" content="2023-01-31T14:11:45.642Z">
+<meta property="article:author" content="LazyC-99">
+<meta property="article:tag" content="IO">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220802163623607.png">
+
+<link rel="canonical" href="http://example.com/2022/08/02/Netty%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Netty网络通讯 | LazyC-99</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1754dd488b86cf701e1f9cbc3e330b03";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">LazyC-99</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/02/Netty%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="LazyC-99">
+      <meta itemprop="description" content="Human sorrows and joys are not interlinked, I just think they are noisy.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LazyC-99">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Netty网络通讯
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-02 16:03:23" itemprop="dateCreated datePublished" datetime="2022-08-02T16:03:23+08:00">2022-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-31 22:11:45" itemprop="dateModified" datetime="2023-01-31T22:11:45+08:00">2023-01-31</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Netty网络通讯"><a href="#Netty网络通讯" class="headerlink" title="Netty网络通讯"></a>Netty网络通讯</h2><h3 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h3><ul>
+<li><p>BIO(传统阻塞IO): 服务器实现模式为一个连接一个线程</p>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220802163623607.png" alt="image-20220802163623607"></p>
+</li>
+<li><p>NIO(同步非阻塞IO): 面向缓冲区(块)编程，服务器实现模式为一个线程处理多个请求(连接),请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求就进行处理</p>
+</li>
+</ul>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220802163844851.png" alt="image-20220802163844851"></p>
+<ol>
+<li>每个channel都会对应一个Bufer</li>
+<li>Selector 对对应一个线程，一个线程对应多个channel(连接)</li>
+<li>该图反应了有三个channel注册到该selector </li>
+<li>程序切换到哪个channel是有事件决定的,Event是一个重要的概念</li>
+<li>Selector会根据不同的事件，在各个通道上切换</li>
+<li>Buffer就是一个内存块,底层是有一个数组</li>
+<li>数据的读取写入是通过Buffer，BIO中要么是输入流，或者是输出流，不能双向，NIO的Buffer是可以读也可以写，需要flip()方法切换</li>
+<li>channel是双向的，可以返回底层操作系统的情况，比如Linux，底层的操作系统通道就是双向的.</li>
+</ol>
+<h3 id="缓冲区-Buffer"><a href="#缓冲区-Buffer" class="headerlink" title="缓冲区(Buffer)"></a>缓冲区(Buffer)</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Capacity</td>
+<td>容量:即可以容纳的最大数据量;在缓吊区创建时被设并且不能改变</td>
+</tr>
+<tr>
+<td>Limit</td>
+<td>表示缓冲区的当前终点，不能对缓冲区超过极限的位置迸行读写操作。且极限是可修改的</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>位置,下一个要被读或写的元素的索引,每次读亨缓冲区数据时都会改变改值,为下茨读写作准备</td>
+</tr>
+<tr>
+<td>Mark</td>
+<td>标记</td>
+</tr>
+</tbody></table>
+<p>NIO还提供了MappedByteBuffer，可以让文件直接在内存（堆外的内存）中进行修改，而如何同步到文件由NIO来完成</p>
+<h3 id="通道-Channel"><a href="#通道-Channel" class="headerlink" title="通道(Channel)"></a>通道(Channel)</h3><ol>
+<li><p>NIO的通道类似于流，但有些区别如下:</p>
+<ul>
+<li><p>通道可以同时进行读写，而流只能读或者只能写·通道可以实现异步读写数据</p>
+</li>
+<li><p>通道可以从缓冲读数据，也可以写数据到缓冲</p>
+</li>
+</ul>
+</li>
+<li><p>Channel在NIO中是一个接口</p>
+</li>
+<li><p>常用Channel类有: FileChannel, DatagramChannel, ServerSocketChannel, SocketChannnel</p>
+</li>
+<li><p>FileChannel用于文件数据读写, DatagramChannel 用于UDP的数据读写, ServerSocketChannel, SocketChannnel用于TCP的数据读写</p>
+</li>
+</ol>
+<ul>
+<li><p>文件读写</p>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220805163842676.png" alt="image-20220805163842676"></p>
+</li>
+<li><p>文件复制</p>
+</li>
+</ul>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20220805163939115.png" alt="image-20220805163939115"></p>
+<ol start="5">
+<li>NIO还支持通过多个Buffer(即 Buffer数组)完成读写操作，即Scattering 和 Gathering<ul>
+<li>Scattering : 将数据写入到buffer时，可以采用buffer数组，依次写入</li>
+<li>Gathering : 从buffer读取数据时，可以采用buffer数组，依次读</li>
+</ul>
+</li>
+</ol>
+<h3 id="选择器-Selector"><a href="#选择器-Selector" class="headerlink" title="选择器(Selector)"></a>选择器(Selector)</h3><ol>
+<li>Selector能够检测多个注册的通道上是否有事件发生，如果有事件发生，便获取事件然后针对每个事件进行相应的处理。实现一个单线程管理多个通道，也就是管理多个连接和请求。</li>
+<li>只有在 连接/通道 真正有读写事件发生时，才会进行读写，大大地减少了系统开销，并且不必为每个连接都创建一个线程，不用去维护多个线程, 避免了多线程之间的上下文切换导致的开销</li>
+<li></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/wechatpay.png" alt="LazyC-99 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/alipay.jpg" alt="LazyC-99 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/19/blog-images-master/README/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/08/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="next" title="JVM虚拟机">
+      JVM虚拟机 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF"><span class="nav-number">1.</span> <span class="nav-text">Netty网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">IO模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA-Buffer"><span class="nav-number">1.2.</span> <span class="nav-text">缓冲区(Buffer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E9%81%93-Channel"><span class="nav-number">1.3.</span> <span class="nav-text">通道(Channel)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8-Selector"><span class="nav-number">1.4.</span> <span class="nav-text">选择器(Selector)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LazyC-99"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">LazyC-99</p>
+  <div class="site-description" itemprop="description">Human sorrows and joys are not interlinked, I just think they are noisy.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xhenlDLTk5" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LazyC-99"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fab fa-blogger"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LazyC-99</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">109k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:39</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

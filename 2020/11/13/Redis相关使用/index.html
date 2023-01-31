@@ -29,10 +29,15 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201204163643.png">
 <meta property="og:image" content="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155543.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/SjUIoKfFGyzsi1L.png">
 <meta property="og:image" content="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155931.png">
 <meta property="og:image" content="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115160127.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/04/s3u9aZlbWU6xIp2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/04/TyqZxJYLtFd51lU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/05/7N46pY3kZhJBRzC.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/061e2c04e0ebca3425dd75dd035b6b7b.png">
 <meta property="article:published_time" content="2020-11-13T13:47:16.000Z">
-<meta property="article:modified_time" content="2021-07-07T13:33:36.978Z">
+<meta property="article:modified_time" content="2022-11-01T05:35:07.693Z">
 <meta property="article:author" content="LazyC-99">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="tools">
@@ -235,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-07 21:33:36" itemprop="dateModified" datetime="2021-07-07T21:33:36+08:00">2021-07-07</time>
+                <time title="修改时间：2022-11-01 13:35:07" itemprop="dateModified" datetime="2022-11-01T13:35:07+08:00">2022-11-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
+              <span>6.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -279,7 +284,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><p>Redis是现在最受欢迎的NoSQL数据库之一，Redis是一个使用ANSI C编写的开源、包含多种数据结构、支持网络、基于内存、可选持久性的键值对存储数据库，其具备如下特性：</p>
+        <h3 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h3><p>Redis是现在最受欢迎的NoSQL数据库之一，Redis是一个使用ANSI C编写的开源、包含多种数据结构、支持网络、基于内存、可选持久性的键值对存储数据库，其具备如下特性：</p>
 <a id="more"></a>
 
 <ul>
@@ -288,23 +293,23 @@
 <li>key-value存储系统</li>
 <li>开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API</li>
 </ul>
-<h4 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
+<h3 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
 <li>NoSQL(NoSQL = Not Only SQL )，意即”不仅仅是SQL”，泛指非关系型的数据库。</li>
 <li>NoSQL不依赖业务逻辑方式存储,而以简单的key-value模式存储,因此大大的增加了数据库的扩展能力</li>
 <li>不遵循SQL标准</li>
 <li>不支持ACID(原子性,一致性,独立性,持久性)</li>
 <li>远超SQL的性能</li>
 </ul>
-<h5 id="NoSQL适用场景"><a href="#NoSQL适用场景" class="headerlink" title="NoSQL适用场景"></a>NoSQL适用场景</h5><ul>
+<h4 id="NoSQL适用场景"><a href="#NoSQL适用场景" class="headerlink" title="NoSQL适用场景"></a>NoSQL适用场景</h4><ul>
 <li>对数据的高并发读写</li>
 <li>海量数据的读写</li>
 <li>对数据高可扩展性的</li>
 </ul>
-<h5 id="不适用场景"><a href="#不适用场景" class="headerlink" title="不适用场景"></a>不适用场景</h5><ul>
+<h4 id="不适用场景"><a href="#不适用场景" class="headerlink" title="不适用场景"></a>不适用场景</h4><ul>
 <li>需要事务支持</li>
 <li>基于sql的结构化查询存储,处理复杂的关系,需要及席查询(条件查询)</li>
 </ul>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><h5 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h5><table>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h4><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -336,7 +341,7 @@
 <td align="center">开启客户端</td>
 </tr>
 </tbody></table>
-<h5 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h5><table>
+<h4 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h4><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -380,7 +385,7 @@
 <td align="center">清空所有库</td>
 </tr>
 </tbody></table>
-<h5 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h5><table>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -430,8 +435,8 @@
 </tbody></table>
 <p> 默认16个数据库,类似数组下标从0开始,初始默认使用0号库</p>
 <p>使用 select <id> 来切换数据库</p>
-<h4 id="五种数据结构"><a href="#五种数据结构" class="headerlink" title="五种数据结构"></a>五种数据结构</h4><p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201204163643.png"></p>
-<h5 id="1-String-字符串类型"><a href="#1-String-字符串类型" class="headerlink" title="1.String 字符串类型"></a>1.String 字符串类型</h5><p>是redis中最基本的数据类型，一个key对应一个value。</p>
+<h3 id="五种数据结构"><a href="#五种数据结构" class="headerlink" title="五种数据结构"></a>五种数据结构</h3><p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201204163643.png"></p>
+<h4 id="1-String-字符串类型"><a href="#1-String-字符串类型" class="headerlink" title="1.String 字符串类型"></a>1.String 字符串类型</h4><p>是redis中最基本的数据类型，一个key对应一个value。</p>
 <p>String类型是二进制安全的，意思是 redis 的 string 可以包含任何数据。如数字，字符串，jpg图片或者序列化的对象。</p>
 <p>使用：get 、 set 、 del 、 incr、 decr 等</p>
 <p>实战场景：</p>
@@ -443,7 +448,7 @@
 <li><p>session：常见方案spring session + redis实现session共享</p>
 </li>
 </ol>
-<h5 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2.Hash"></a>2.Hash</h5><p>是一个Mapmap，指值本身又是一种键值对结构，如 value={ {field1,value1},……fieldN,valueN} }</p>
+<h4 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2.Hash"></a>2.Hash</h4><p>是一个Mapmap，指值本身又是一种键值对结构，如 value={ {field1,value1},……fieldN,valueN} }</p>
 <p>使用：所有hash的命令都是 h  开头的   hget 、hset 、 hdel 等</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset user name1 hao</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset user email1 hao@163.com</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall user</span><br><span class="line">1) &quot;name1&quot;</span><br><span class="line">2) &quot;hao&quot;</span><br><span class="line">3) &quot;email1&quot;</span><br><span class="line">4) &quot;hao@163.com&quot;</span><br><span class="line">127.0.0.1:6379&gt; hget user user</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; hget user name1</span><br><span class="line">&quot;hao&quot;</span><br><span class="line">127.0.0.1:6379&gt; hset user name2 xiaohao</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset user email2 xiaohao@163.com</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall user</span><br><span class="line">1) &quot;name1&quot;</span><br><span class="line">2) &quot;hao&quot;</span><br><span class="line">3) &quot;email1&quot;</span><br><span class="line">4) &quot;hao@163.com&quot;</span><br><span class="line">5) &quot;name2&quot;</span><br><span class="line">6) &quot;xiaohao&quot;</span><br><span class="line">7) &quot;email2&quot;</span><br><span class="line">8) &quot;xiaohao@163.com&quot;</span><br></pre></td></tr></table></figure>
 
@@ -451,12 +456,12 @@
 <ol>
 <li>缓存： 能直观，相比string更节省空间，的维护缓存信息，如用户信息，视频信息等。</li>
 </ol>
-<h5 id="3-链表"><a href="#3-链表" class="headerlink" title="3.链表"></a>3.链表</h5><p>List 说白了就是链表（redis 使用双端链表实现的 List），是有序的，value可以重复，可以通过下标取出对应的value值，左右两边都能进行插入和删除数据。</p>
+<h4 id="3-链表"><a href="#3-链表" class="headerlink" title="3.链表"></a>3.链表</h4><p>List 说白了就是链表（redis 使用双端链表实现的 List），是有序的，value可以重复，可以通过下标取出对应的value值，左右两边都能进行插入和删除数据。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush mylist 1 2 ll ls mem</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; lrange mylist 0 -1</span><br><span class="line">1) &quot;mem&quot;</span><br><span class="line">2) &quot;ls&quot;</span><br><span class="line">3) &quot;ll&quot;</span><br><span class="line">4) &quot;2&quot;</span><br><span class="line">5) &quot;1&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
 
 <p>实战场景：</p>
 <p>1.timeline：例如微博的时间轴，有人发布微博，用lpush加入时间轴，展示新的列表信息。</p>
-<h5 id="4-Set-集合"><a href="#4-Set-集合" class="headerlink" title="4.Set  集合"></a>4.Set  集合</h5><p>集合类型也是用来保存多个字符串的元素，但和列表不同的是集合中 </p>
+<h4 id="4-Set-集合"><a href="#4-Set-集合" class="headerlink" title="4.Set  集合"></a>4.Set  集合</h4><p>集合类型也是用来保存多个字符串的元素，但和列表不同的是集合中 </p>
 <ol>
 <li>不允许有重复的元素</li>
 <li>集合中的元素是无序的，不能通过索引下标获取元素</li>
@@ -472,7 +477,7 @@
 <li><p>点赞，或点踩，收藏等，可以放到set中实现</p>
 </li>
 </ol>
-<h5 id="5-zset-有序集合"><a href="#5-zset-有序集合" class="headerlink" title="5.zset 有序集合"></a>5.zset 有序集合</h5><p>有序集合和集合有着必然的联系，保留了集合不能有重复成员的特性，区别是，有序集合中的元素是可以排序的，它给每个元素设置一个分数，作为排序的依据。</p>
+<h4 id="5-zset-有序集合"><a href="#5-zset-有序集合" class="headerlink" title="5.zset 有序集合"></a>5.zset 有序集合</h4><p>有序集合和集合有着必然的联系，保留了集合不能有重复成员的特性，区别是，有序集合中的元素是可以排序的，它给每个元素设置一个分数，作为排序的依据。</p>
 <p>使用： 有序集合的命令都是 以 z 开头  zadd 、 zrange、 zscore</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd myscoreset 100 hao 90 xiaohao</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; ZRANGE myscoreset 0 -1</span><br><span class="line">1) &quot;xiaohao&quot;</span><br><span class="line">2) &quot;hao&quot;</span><br><span class="line">127.0.0.1:6379&gt; ZSCORE myscoreset hao</span><br><span class="line">&quot;100&quot;</span><br></pre></td></tr></table></figure>
 
@@ -480,40 +485,41 @@
 <ol>
 <li>排行榜：有序集合经典使用场景。例如小说视频等网站需要对用户上传的小说视频做排行榜，榜单可以按照用户关注数，更新时间，字数等打分，做排行。</li>
 </ol>
-<h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><h5 id="ip地址的绑定-bind"><a href="#ip地址的绑定-bind" class="headerlink" title="ip地址的绑定(bind)"></a>ip地址的绑定(bind)</h5><ul>
+<h3 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h3><h4 id="ip地址的绑定-bind"><a href="#ip地址的绑定-bind" class="headerlink" title="ip地址的绑定(bind)"></a>ip地址的绑定(bind)</h4><ul>
 <li>默认情况下bind = 127.0.0.1只能接受本机访问,不写无限制接收任何ip访问(生产环境要写应用服务器的地址)</li>
 <li>如果开启了protexted-mode,在没有设定bind ip 且没有设密码的情况下,只允许接收本机访问</li>
 </ul>
-<h5 id="tcp-backlog"><a href="#tcp-backlog" class="headerlink" title="tcp-backlog"></a>tcp-backlog</h5><ul>
+<h4 id="tcp-backlog"><a href="#tcp-backlog" class="headerlink" title="tcp-backlog"></a>tcp-backlog</h4><ul>
 <li>请求到达后至少接受进程处理前的队列</li>
 <li>backlog队列总和 = 未完成三次握手队列 + 已经完成三次握手的队列</li>
 <li>高并发环境tcp-backlog设置值跟超时时限内的Redis吞吐量决定</li>
 </ul>
-<h5 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h5><ul>
+<h4 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h4><ul>
 <li>一个空闲的客户端维持多少秒会关闭,0为永不关闭</li>
 </ul>
-<h5 id="TCP-keepalive"><a href="#TCP-keepalive" class="headerlink" title="TCP keepalive"></a>TCP keepalive</h5><ul>
+<h4 id="TCP-keepalive"><a href="#TCP-keepalive" class="headerlink" title="TCP keepalive"></a>TCP keepalive</h4><ul>
 <li>对访问客户端的一种心跳检测,每n秒检测一次,官方推荐为60秒</li>
 </ul>
-<h5 id="requirepass"><a href="#requirepass" class="headerlink" title="requirepass"></a>requirepass</h5><ul>
+<h4 id="requirepass"><a href="#requirepass" class="headerlink" title="requirepass"></a>requirepass</h4><ul>
 <li>设置永久密码</li>
 </ul>
-<h4 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h4><h5 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><h4 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="连接Redis"><a href="#连接Redis" class="headerlink" title="连接Redis"></a>连接Redis</h5> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;xxx.xxx.xx.xx&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">jedis.ping();</span><br><span class="line">jedus.close();</span><br></pre></td></tr></table></figure>
+<h4 id="连接Redis"><a href="#连接Redis" class="headerlink" title="连接Redis"></a>连接Redis</h4> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;xxx.xxx.xx.xx&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">jedis.ping();</span><br><span class="line">jedus.close();</span><br></pre></td></tr></table></figure>
 
-<h4 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><ul>
+<h3 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
 <li><p>Redis事务是一个单独的隔离操作: 事务中的所有命令都会序列化, 按顺序的执行,事务在执行的过程中, 不iu被其他客户端发送来的命令请求所打断</p>
 </li>
 <li><p>Redis事务的主要作用就是串联多个命令防止别人的命令插队</p>
 </li>
 </ul>
-<h5 id="Multi-Exec-discard"><a href="#Multi-Exec-discard" class="headerlink" title="Multi, Exec, discard"></a>Multi, Exec, discard</h5><ul>
+<h4 id="Multi-Exec-discard"><a href="#Multi-Exec-discard" class="headerlink" title="Multi, Exec, discard"></a>Multi, Exec, discard</h4><ul>
 <li>从输入Multi命令开始, 输入的命令都会依次进入命令队列中, 但不会执行, 直到输入Exec后, Redis会将之前的命令队列中的命令依次执行.</li>
-<li>组队的过程中可以通过discard来放弃组队.</li>
+<li>组队的过程中可以通过discard来放弃组队(回滚).</li>
 </ul>
 <p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155543.png"></p>
-<h5 id="事务的错误处理"><a href="#事务的错误处理" class="headerlink" title="事务的错误处理"></a>事务的错误处理</h5><ul>
+<p><img src="https://s2.loli.net/2022/04/07/SjUIoKfFGyzsi1L.png"></p>
+<h4 id="事务的错误处理"><a href="#事务的错误处理" class="headerlink" title="事务的错误处理"></a>事务的错误处理</h4><ul>
 <li>组队中某个命令如果出现了报告错误, 执行时整个的队友队列都会被取消</li>
 </ul>
 <p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115155931.png" alt="事务的错误处理"></p>
@@ -521,9 +527,9 @@
 <li>如果执行阶段某个命令报出了错误, 则只有报错的命令不会被执行, 而其他的命令都会执行,不会回滚</li>
 </ul>
 <p><img src="https://gitee.com/LazyC-99/blog-images/raw/master/img/20201115160127.png" alt="事务的错误处理"></p>
-<h5 id="WATCH-监视"><a href="#WATCH-监视" class="headerlink" title="WATCH (监视)"></a>WATCH (监视)</h5><p>在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个)key ，如果在事务执行之前这个(或这些) key被其他命令所改动，那么事务将被打断，unwatch取消监视</p>
-<h4 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h4><p>Redis提供了2个不同形式的持久化方式</p>
-<h5 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h5><ul>
+<h4 id="WATCH-监视"><a href="#WATCH-监视" class="headerlink" title="WATCH (监视)"></a>WATCH (监视)</h4><p>在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个)key ，如果在事务执行之前这个(或这些) key被其他命令所改动，那么事务将被打断，unwatch取消监视</p>
+<h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><p>Redis提供了2个不同形式的持久化方式</p>
+<h4 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h4><ul>
 <li><p>在指定的时间间隔内将内存中的数据集快照(Snapshot)写入磁盘，它恢复时是将快照文件直接读到内存里。</p>
 </li>
 <li><p>Redis会单独创建(fork)一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能,如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF方式更加的高效。RDB的缺点是最后一次持久化后的数据可能丢失。</p>
@@ -534,11 +540,113 @@
 <p>save    900    1(900秒内保存1次)</p>
 </li>
 </ul>
-<h5 id="AOF-Append-Of-File"><a href="#AOF-Append-Of-File" class="headerlink" title="AOF(Append Of File)"></a>AOF(Append Of File)</h5><ul>
+<h4 id="AOF-Append-Of-File"><a href="#AOF-Append-Of-File" class="headerlink" title="AOF(Append Of File)"></a>AOF(Append Of File)</h4><ul>
 <li>以日志的形式来记录每个写操作，将Redis执行过的所有写指令记录下来(读操作不记录)，只许追加文件但不可以改写文件，Redis启动之初会读取该文件重新构建数据，换言之，Redis重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作。</li>
 <li>AOF默认不开启, 需要在配置文件中配置  apeendonly 为 yes</li>
 <li>AOF与RDB同时开启, 以AOF为准</li>
 </ul>
+<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><ul>
+<li><p>作用:     1.读写分离(主机写从机读)     2.容灾的快速恢复    </p>
+</li>
+<li><p>复制原理: Slave启动成功连接到master后会发送一个sync命令,master接到后启动后台的存盘进程,将所有数据传送到slave</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/04/04/s3u9aZlbWU6xIp2.png">cc</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>info replication</td>
+<td>查看主机运行状态</td>
+</tr>
+<tr>
+<td>slaveof 127.0.0.1 6379</td>
+<td>设置从机</td>
+</tr>
+<tr>
+<td>slaveof no one</td>
+<td>讲从机变为主机</td>
+</tr>
+</tbody></table>
+<p>注意:本地测试时配置redis.windows-service.conf(redis.conf) 文件 bind IP地址（不要用127.0.0.1）</p>
+<p>redis-cli -h IP地址 -p 端口号 -a 密码  </p>
+<h4 id="哨兵模式-分片集群"><a href="#哨兵模式-分片集群" class="headerlink" title="哨兵模式(分片集群)"></a>哨兵模式(分片集群)</h4><ol>
+<li><p>redis安装目录下创建<code>sentinel.conf</code>文件</p>
+</li>
+<li><p>写入<code>sentinel monitor mymaster 127.0.0.1 1</code>    “1”表示至少多少个哨兵同意迁移的数量</p>
+</li>
+<li><p>启动哨兵 <code>redis-sentinel sentinel.cof</code></p>
+</li>
+<li><p>主机选择 优先级在redis.conf 中默认: <code>slave-prioriy </code>( replica-prioriy 新 ) 100，值越小优先级越高</p>
+</li>
+<li><p>Java中使用</p>
+<p><img src="https://s2.loli.net/2022/04/04/TyqZxJYLtFd51lU.png"></p>
+</li>
+</ol>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>Redis集群实现了对Redis 的水平扩容，即启动N个redis节点，将整个数据库分布存储在这N个节点中，每个节点存储总数据的1/N。</p>
+<p>Redis集群通过分区( partition )来提供一定程度的可用性( av ailability ): 即使集群中有一部分节点失效或者无法进行通讯，集群也可以继续处理命令请求。·</p>
+<h5 id="配置-redis-conf"><a href="#配置-redis-conf" class="headerlink" title="配置(redis.conf)"></a>配置(redis.conf)</h5><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cluster-enabled yes</td>
+<td>打开集群模式</td>
+</tr>
+<tr>
+<td>cluster-config-file nodes-6379.conf</td>
+<td>设定节点配置文件名</td>
+</tr>
+<tr>
+<td>cluster-node-timeout 15000</td>
+<td>设定节点失联时间,超过时间自动主从切换</td>
+</tr>
+</tbody></table>
+<p>创建集群: redis-cli -cluster create —replicas 1 ip1:port ip2:port ip3:port ip4:port ip5:port ip6:portc    (1,2,3主3,4,5从),</p>
+<p>一个集群至少要有三个主节点    “1”表示希望为集群中的每个主节点创建—个从节点。分配原则尽量保证每个主数据库运行在不同的IP地址，每个从库和主库不在一个P地址上.</p>
+<h5 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h5><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>redis-cli -c -p 6379</td>
+<td>集群方式连接</td>
+</tr>
+<tr>
+<td>cluster nodes</td>
+<td>查看集群中节点信息</td>
+</tr>
+</tbody></table>
+<h5 id="Jedis使用"><a href="#Jedis使用" class="headerlink" title="Jedis使用"></a>Jedis使用</h5><p>即使连接的不是主机，集群会自动切换主机 存储。主机写，从机读。无中心化主从集群。无论从哪台主机写的数据，其他主机上都能读到数据。</p>
+<p><img src="https://s2.loli.net/2022/04/05/7N46pY3kZhJBRzC.png"></p>
+<h3 id="过期键删除策略"><a href="#过期键删除策略" class="headerlink" title="过期键删除策略"></a>过期键删除策略</h3><p>Redis keys过期有两种方式: 被动和主动方式</p>
+<ul>
+<li>主动: 当客户端访问它时, key会被发现并主动过期</li>
+<li>被动: Redis每秒做10次随机测试20个Keys进行过期检测, 删除过期Keys, 如多余25%过期, 再次抽20个</li>
+</ul>
+<h3 id="缓存回收"><a href="#缓存回收" class="headerlink" title="缓存回收"></a>缓存回收</h3><p>Redis中提供了一种内存淘汰策略，当内存不足时，Redis会根据相应的淘汰规则对key数据进行淘汰。Redis一共提供了8种淘汰策略</p>
+<ul>
+<li><strong>volatile-lru</strong>，针对设置了过期时间的key，使用lru算法进行淘汰。</li>
+<li><strong>allkeys-lru</strong>，针对所有key使用lru算法进行淘汰。</li>
+<li><strong>volatile-lfu</strong>，针对设置了过期时间的key，使用lfu算法进行淘汰。</li>
+<li><strong>allkeys-lfu</strong>，针对所有key使用lfu算法进行淘汰。</li>
+<li><strong>volatile-random</strong>，从所有设置了过期时间的key中使用随机淘汰的方式进行淘汰。</li>
+<li><strong>allkeys-random</strong>，针对所有的key使用随机淘汰机制进行淘汰。</li>
+<li><strong>volatile-ttl</strong>，删除生存时间最近的一个键。</li>
+<li><strong>noeviction</strong>，不删除键，值返回错误。(默认)</li>
+</ul>
+<p>注: LRU—Least Recently Used 近期最少使用算法(最后一次被使用到发生调度的时间长短)            LFU—-Least Frequently Used算法,即最少访问算法(一定时间段内页面被使用的频率)</p>
+<h3 id="缓存穿透-击穿-雪崩"><a href="#缓存穿透-击穿-雪崩" class="headerlink" title="缓存穿透,击穿,雪崩"></a>缓存穿透,击穿,雪崩</h3><p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/061e2c04e0ebca3425dd75dd035b6b7b.png" alt="图片"></p>
 
     </div>
 
@@ -583,8 +691,8 @@
       <i class="fa fa-chevron-left"></i> Docker的安装使用
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/11/15/ab%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" rel="next" title="ab压力测试工具">
-      ab压力测试工具 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/11/23/spring-cloud-netflix%E4%BD%BF%E7%94%A8/" rel="next" title="spring-cloud-netflix使用">
+      spring-cloud-netflix使用 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -644,7 +752,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Redis简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nosql"><span class="nav-number">2.</span> <span class="nav-text">Nosql</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NoSQL%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">NoSQL适用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8D%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.3.</span> <span class="nav-text">不适用场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">启动命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">使用命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">数据操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">五种数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-String-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.1.</span> <span class="nav-text">1.String 字符串类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Hash"><span class="nav-number">4.2.</span> <span class="nav-text">2.Hash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E9%93%BE%E8%A1%A8"><span class="nav-number">4.3.</span> <span class="nav-text">3.链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Set-%E9%9B%86%E5%90%88"><span class="nav-number">4.4.</span> <span class="nav-text">4.Set  集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-zset-%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="nav-number">4.5.</span> <span class="nav-text">5.zset 有序集合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ip%E5%9C%B0%E5%9D%80%E7%9A%84%E7%BB%91%E5%AE%9A-bind"><span class="nav-number">5.1.</span> <span class="nav-text">ip地址的绑定(bind)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tcp-backlog"><span class="nav-number">5.2.</span> <span class="nav-text">tcp-backlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#timeout"><span class="nav-number">5.3.</span> <span class="nav-text">timeout</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-keepalive"><span class="nav-number">5.4.</span> <span class="nav-text">TCP keepalive</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#requirepass"><span class="nav-number">5.5.</span> <span class="nav-text">requirepass</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jedis"><span class="nav-number">6.</span> <span class="nav-text">Jedis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">6.1.</span> <span class="nav-text">导入依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Redis"><span class="nav-number">6.2.</span> <span class="nav-text">连接Redis</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E4%BA%8B%E5%8A%A1"><span class="nav-number">7.</span> <span class="nav-text">Redis事务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">7.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multi-Exec-discard"><span class="nav-number">7.2.</span> <span class="nav-text">Multi, Exec, discard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">7.3.</span> <span class="nav-text">事务的错误处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-%E7%9B%91%E8%A7%86"><span class="nav-number">7.4.</span> <span class="nav-text">WATCH (监视)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">Redis持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RDB-Redis-DataBase"><span class="nav-number">8.1.</span> <span class="nav-text">RDB(Redis DataBase)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AOF-Append-Of-File"><span class="nav-number">8.2.</span> <span class="nav-text">AOF(Append Of File)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Redis简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nosql"><span class="nav-number">2.</span> <span class="nav-text">Nosql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">NoSQL适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.3.</span> <span class="nav-text">不适用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">启动命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">使用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">数据操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">五种数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-String-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.1.</span> <span class="nav-text">1.String 字符串类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Hash"><span class="nav-number">4.2.</span> <span class="nav-text">2.Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%93%BE%E8%A1%A8"><span class="nav-number">4.3.</span> <span class="nav-text">3.链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Set-%E9%9B%86%E5%90%88"><span class="nav-number">4.4.</span> <span class="nav-text">4.Set  集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-zset-%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="nav-number">4.5.</span> <span class="nav-text">5.zset 有序集合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ip%E5%9C%B0%E5%9D%80%E7%9A%84%E7%BB%91%E5%AE%9A-bind"><span class="nav-number">5.1.</span> <span class="nav-text">ip地址的绑定(bind)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcp-backlog"><span class="nav-number">5.2.</span> <span class="nav-text">tcp-backlog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timeout"><span class="nav-number">5.3.</span> <span class="nav-text">timeout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-keepalive"><span class="nav-number">5.4.</span> <span class="nav-text">TCP keepalive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#requirepass"><span class="nav-number">5.5.</span> <span class="nav-text">requirepass</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jedis"><span class="nav-number">6.</span> <span class="nav-text">Jedis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">6.1.</span> <span class="nav-text">导入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Redis"><span class="nav-number">6.2.</span> <span class="nav-text">连接Redis</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%BA%8B%E5%8A%A1"><span class="nav-number">7.</span> <span class="nav-text">Redis事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">7.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Exec-discard"><span class="nav-number">7.2.</span> <span class="nav-text">Multi, Exec, discard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">7.3.</span> <span class="nav-text">事务的错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WATCH-%E7%9B%91%E8%A7%86"><span class="nav-number">7.4.</span> <span class="nav-text">WATCH (监视)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">Redis持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-Redis-DataBase"><span class="nav-number">8.1.</span> <span class="nav-text">RDB(Redis DataBase)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-Append-Of-File"><span class="nav-number">8.2.</span> <span class="nav-text">AOF(Append Of File)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-number">9.</span> <span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="nav-number">9.1.</span> <span class="nav-text">主从复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F-%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4"><span class="nav-number">9.2.</span> <span class="nav-text">哨兵模式(分片集群)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">9.3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-redis-conf"><span class="nav-number">9.3.1.</span> <span class="nav-text">配置(redis.conf)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">9.3.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Jedis%E4%BD%BF%E7%94%A8"><span class="nav-number">9.3.3.</span> <span class="nav-text">Jedis使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%9C%9F%E9%94%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5"><span class="nav-number">10.</span> <span class="nav-text">过期键删除策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%9B%9E%E6%94%B6"><span class="nav-number">11.</span> <span class="nav-text">缓存回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F-%E5%87%BB%E7%A9%BF-%E9%9B%AA%E5%B4%A9"><span class="nav-number">12.</span> <span class="nav-text">缓存穿透,击穿,雪崩</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -660,7 +768,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -673,7 +781,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -705,7 +813,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fab fa-blogger"></i>
   </span>
@@ -714,12 +822,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">109k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">53 分钟</span>
+    <span title="站点阅读时长">1:39</span>
 </div>
 
         
