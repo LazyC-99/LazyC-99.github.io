@@ -126,9 +126,9 @@ $ docker run --name redis -p 6379:6379 \
 
 ```shell
 
-$ docker run --name kibana -e ELASTICSEA	RCH_HOSTS=http://172.24.0.1:9200 -p 5601:5601 -d kibana:7.6.2
+$ docker run --name kibana -e ELASTICSEA	RCH_HOSTS=http://172.24.0.1:9200 -p 5601:5601 -d kibana:7.6.2 //命令行指定
 
-$ docker run --name kibana -p 5601:5601 -v E:/mydata/kibana/config/:/usr/share/kibana/config -d kibana:7.6.2
+$ docker run --name kibana -p 5601:5601 -v E:/mydata/kibana/config/:/usr/share/kibana/config -d kibana:7.6.2	//配置文件指定
 
 
 $ docker run --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" -v E:/mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v E:/mydata/elasticsearch/data:/usr/share/elasticsearch/data -v E:/mydata/elasticsearch/plugings:/usr/share/elasticsearch/plugins -d elasticsearch:7.6.2
