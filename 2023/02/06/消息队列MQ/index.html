@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Message Queue  MQ是消息中间件，是一种在分布式系统中应用程序借以传递消息的媒介，常用的有ActiveMQ，RabbitMQ(erlang)，kafka。 使用场景:  异步处理、应用解耦、流量控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息队列MQ">
+<meta property="og:url" content="http://example.com/2023/02/06/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97MQ/index.html">
+<meta property="og:site_name" content="LazyC-99">
+<meta property="og:description" content="Message Queue  MQ是消息中间件，是一种在分布式系统中应用程序借以传递消息的媒介，常用的有ActiveMQ，RabbitMQ(erlang)，kafka。 使用场景:  异步处理、应用解耦、流量控制">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20230206170910912.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20230206174720569.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/20210707211328.png">
+<meta property="og:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/20210707211339.png">
+<meta property="article:published_time" content="2023-02-06T07:50:02.000Z">
+<meta property="article:modified_time" content="2023-02-06T10:19:27.713Z">
+<meta property="article:author" content="LazyC-99">
+<meta property="article:tag" content="中间件">
+<meta property="article:tag" content="MQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20230206170910912.png">
+
+<link rel="canonical" href="http://example.com/2023/02/06/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97MQ/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>消息队列MQ | LazyC-99</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1754dd488b86cf701e1f9cbc3e330b03";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">LazyC-99</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/06/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97MQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="LazyC-99">
+      <meta itemprop="description" content="Human sorrows and joys are not interlinked, I just think they are noisy.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LazyC-99">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          消息队列MQ
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-06 15:50:02 / 修改时间：18:19:27" itemprop="dateCreated datePublished" datetime="2023-02-06T15:50:02+08:00">2023-02-06</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Message-Queue"><a href="#Message-Queue" class="headerlink" title="Message Queue"></a>Message Queue</h1><blockquote>
+<p> MQ是消息中间件，是一种在分布式系统中应用程序借以传递消息的媒介，常用的有ActiveMQ，RabbitMQ(erlang)，kafka。</p>
+<p>使用场景:  异步处理、应用解耦、流量控制 </p>
+</blockquote>
+<a id="more"></a>
+
+<ul>
+<li><p>JMS (Java Message Service) JAVA消息服务:</p>
+<p>基于JVM消息代理的规范。ActiveMQ、HornetMQ是JMS实现</p>
+</li>
+<li><p>AMQP (Advanced Message Queuing Protocol)</p>
+<p>高级消息队列协议，也是一个消息代理的规范，兼容JMS</p>
+<p>RabbitMQ是AMQP的实现</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>JMS (Java Message Service)</th>
+<th>AMQP (Advanced Message Queuing Protocol)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>Java api</td>
+<td>网络线级协议</td>
+</tr>
+<tr>
+<td>跨语言</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>跨平台</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>两种消息模型:<br />(1) Peer-2-Peer<br />(2) Pub/sub</td>
+<td>提供了五种消息模型:<br />(1) . direct exchange<br />(2). fanout exchange<br />(3). topic change<br/>(4) . headers exchange<br />(5). system exchange<br/>本质来讲．后四种和JMS的pub/sub模型没有太大差别，仅是在路由机制上做了更详细的划分;</td>
+</tr>
+<tr>
+<td>支持消息类型</td>
+<td>多种消息类型:TextMessage, MapMessage, Message…..</td>
+<td>byte[]: 当实际应用时,有复杂的消息,可以将消息序列化后发送。</td>
+</tr>
+<tr>
+<td>综合评价</td>
+<td>JMS定义了JAVA API层面的标准; 在java体系中，多个client均可以通过JMS进行交互，不需要应用修改代码, 但是其对跨平台的支持较差;</td>
+<td>AMQP定义了wire-level层的协议标准;天然具有跨平台、跨语言特性。</td>
+</tr>
+</tbody></table>
+<h2 id="RabiitMQ"><a href="#RabiitMQ" class="headerlink" title="RabiitMQ"></a>RabiitMQ</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li><p>Message - 消息</p>
+<p>消息是不具名的，它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组成，这些属性包括routing-key_(路由键)、priority(相对于其他消息的优先权)、delivery-mode(指出该消息可能需要持久性存储)等。</p>
+</li>
+<li><p>Publisher - 消息的生产者</p>
+<p>也是一个向交换器发布消息的客户端应用程序。</p>
+</li>
+<li><p>Exchange - 交换器</p>
+<p>用来接收生产者发送的消息并将这些消息路由给服务器中的队列。<br>Exchange有4种类型: direct(默认)，fanout, topic,和headers，不同类型的Exchange转发消息的策略有所区别</p>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20230206170910912.png" alt="image-20230206170910912"></p>
+</li>
+</ul>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/image-20230206174720569.png" alt="image-20230206174720569"></p>
+<h2 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h2><p>特点：<br>1、支持多种语言编写客户端<br>2、对spring的支持，很容易和spring整合<br>3、支持多种传输协议：TCP,SSL,NIO,UDP等<br>4、支持AJAX<br>消息形式：<br>1、点对点（queue）<br>2、一对多（topic）</p>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/20210707211328.png"></p>
+<p><img src="https://lzc-oss.oss-cn-chengdu.aliyuncs.com/notes/20210707211339.png"></p>
+<h3 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h3><ol>
+<li>创建连接工厂</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> JMSException </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建连接工厂</span></span><br><span class="line">        ActiveMQConnectionFactory activeMQConnectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(<span class="string">&quot;admin&quot;</span>,<span class="string">&quot;admin&quot;</span>,<span class="string">&quot;tcp://127.0.0.1:61616&quot;</span>);</span><br><span class="line">        <span class="comment">//2.通过连接工厂，获得连接并启动访问</span></span><br><span class="line">        Connection connection = activeMQConnectionFactory.createConnection();</span><br><span class="line">        connection.start();</span><br><span class="line">        <span class="comment">//3.创建会话Session(参数：事务|签收)</span></span><br><span class="line">        Session session = connection.createSession(<span class="keyword">false</span>,Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">        <span class="comment">//4.创建目的地(具体是队列queen还是主题topic)</span></span><br><span class="line">        Queue queue = session.createQueue(<span class="string">&quot;queue01&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>生产者</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//5.创建消息生产者</span></span><br><span class="line">MessageProducer messageProducer = session.createProducer(queue);</span><br><span class="line"><span class="comment">//6.生产消息发送到MQ队列</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">    TextMessage textMessage =session.createTextMessage(<span class="string">&quot;msg--&quot;</span>+i);</span><br><span class="line">    messageProducer.send(textMessage);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//关闭资源</span></span><br><span class="line">messageProducer.close();</span><br><span class="line">session.close();</span><br><span class="line">connection.close();</span><br><span class="line">System.out.printf(<span class="string">&quot;******发送完成&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>消费者:　两种消费者方式</li>
+</ol>
+<ul>
+<li><p>同步阻塞方式（receive()）</p>
+<p>订阅者或接收者调用MessageConsumer的receive()方法接收消息，receive方法在能够接收到消息之前(超时之前)将一直阻塞。</p>
+</li>
+<li><p>异步非阻塞方式（监听器onMessage()）</p>
+<p>订阅者或接受者通过调用MessageConsumer的setMessgeLisener(MessageListener listener) 注册一个消息监听器，当消息到达之后，系统自动调用监听器MessageListener的onMessage(Message message)方法。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//5.创建消息消费者</span></span><br><span class="line">MessageConsumer messageConsumer = session.createConsumer(queue);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">    TextMessage textMessage = (TextMessage) messageConsumer.receive();<span class="comment">//.receive(timeout)</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span>!= textMessage)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;****消费者接收到消息：&quot;</span>+textMessage.getText());</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h3><p>yml配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">	<span class="attr">activemq:</span></span><br><span class="line">      <span class="attr">broker-url:</span> <span class="string">tcp://127.0.0.1:61616</span></span><br><span class="line">      <span class="attr">user:</span> <span class="string">admin</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">admin</span></span><br><span class="line">    <span class="attr">jms:</span></span><br><span class="line">      <span class="attr">pub-sub-domain:</span> <span class="literal">false</span> 		<span class="comment">#false = Queue	true = topic</span></span><br></pre></td></tr></table></figure>
+
+<p>配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableJms</span>  <span class="comment">//启动消息队列（启动类）</span></span><br><span class="line"><span class="comment">//@EnableJmsScheduling    //开启定投</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActiveConfig</span></span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;myqueue&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String myQueue;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queue</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ActiveMQQueue(myQueue)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生产者代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Queue_Produce</span></span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> JmsMessagingTemplate jmsMessagingTemplate;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Queue queue;<span class="comment">//destination</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//消息发送</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produceMsg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        jmsMessagingTemplate.convertAndSend(queue,<span class="string">&quot;message&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//间隔定投</span></span><br><span class="line">    <span class="meta">@Scheduked(fixedDelay = 3000)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> produceMsgScheduled&#123;</span><br><span class="line">        jmsMessagingTemplate.convertAndSend(queue,<span class="string">&quot;message&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>消费者代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Queue_Consumer</span></span>&#123;</span><br><span class="line">    <span class="meta">@JmsListener(destination = &quot;$&#123;myqueue&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        ....</span><br><span class="line">        System.out.println(<span class="string">&quot;消费者接收到消息...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMTY0NDExRzdhQj9wPTQ0">https://www.bilibili.com/video/BV164411G7aB?p=44<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/wechatpay.png" alt="LazyC-99 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/alipay.jpg" alt="LazyC-99 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 中间件</a>
+              <a href="/tags/MQ/" rel="tag"><i class="fa fa-tag"></i> MQ</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/14/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0/" rel="prev" title="区块链学习">
+      <i class="fa fa-chevron-left"></i> 区块链学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Message-Queue"><span class="nav-number">1.</span> <span class="nav-text">Message Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RabiitMQ"><span class="nav-number">1.1.</span> <span class="nav-text">RabiitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ActiveMQ"><span class="nav-number">1.2.</span> <span class="nav-text">ActiveMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">Java实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot%E6%95%B4%E5%90%88"><span class="nav-number">1.2.2.</span> <span class="nav-text">SpringBoot整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">进阶</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LazyC-99"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">LazyC-99</p>
+  <div class="site-description" itemprop="description">Human sorrows and joys are not interlinked, I just think they are noisy.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xhenlDLTk5" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LazyC-99"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fab fa-blogger"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LazyC-99</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">110k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:40</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
