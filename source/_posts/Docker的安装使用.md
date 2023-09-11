@@ -43,14 +43,17 @@ Docker 将应用程序与该程序的依赖，打包在一个文件里面。运�
 
 ## 常用操作
 
+镜像层是只读的，容器层是可写的。
+
 ### 镜像操作
 
-|          命令          |       作用       |
-| :--------------------: | :--------------: |
-|  docker search 关键字  |       检索       |
-| docker pull 镜像名:tag |       拉取       |
-|     docker images      | 查询已下载的镜像 |
-|  docker rmi  image-id  |     删除镜像     |
+|                             命令                             |       作用       |
+| :----------------------------------------------------------: | :--------------: |
+|                     docker search 关键字                     |       检索       |
+|                    docker pull 镜像名:tag                    |       拉取       |
+|                        docker images                         | 查询已下载的镜像 |
+|                     docker rmi  image-id                     |     删除镜像     |
+| docker commit -m="description" -a="author" container-id image-name:tag-name |     制作镜像     |
 
 ### 容器操作
 
@@ -58,15 +61,29 @@ Docker 将应用程序与该程序的依赖，打包在一个文件里面。运�
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | docker run --name container-name -d image-name\|\|eg:docker run --name mytomcat -d tomcat:latest | --name:自定义容器名\|\|-d:后台运行\|\|image-name:指定镜像模板 |
 |                          docker ps                           |            查看运行中的容器\|\|-a可以查看所有容器            |
-|           docer stop container -name/container-id            |                           停止容器                           |
-|           docer start container -name/container-id           |                           启动容器                           |
+|           docker stop container -name/container-id           |                           停止容器                           |
+|          docker start container -name/container-id           |                           启动容器                           |
 |                    docker rm container-id                    |                           删除容器                           |
 |                         -p 6379:6379                         |                    主机端口映射到容器端口                    |
 |           docker logs container-name/container-id            |                         查看容器日志                         |
-|               docker exec -it 容器ID /bin/bash               |                           进入容器                           |
+|    docker exec -it 容器ID /bin/bash------attach(exit退出)    |                         进入new容器                          |
 |                        exit/Ctrl+P+Q                         |                           退出容器                           |
 
-#### MySQL
+## 容器卷
+
+| 命令                                                         | 作用           |
+| ------------------------------------------------------------ | -------------- |
+| docker run -v /dir/dir:/dir/dir:rw[ro]                       | 挂载           |
+| docker inspect container-id                                  | 查看是否挂载上 |
+| docker run -it --privileged=true --volumes-from u1 --name u2 ubuntu | 从u1继承卷到u2 |
+
+## 高级篇
+
+
+
+## 镜像创建
+
+### MySQL
 
 ```shell
 $ docker run -p 3306:3306 --name mysql \
@@ -105,7 +122,7 @@ $ docker run -p 3306:3306 --name mysql \
 
 ​	
 
-#### Redis 
+### Redis 
 
 ```shell
 $ mkdir -p /mydata/redis/conf
@@ -122,7 +139,7 @@ $ docker run --name redis -p 6379:6379 \
 
 ​	
 
-#### ElasticSearch
+### ElasticSearch
 
 ```shell
 
@@ -134,7 +151,7 @@ $ docker run --name kibana -p 5601:5601 -v E:/mydata/kibana/config/:/usr/share/k
 $ docker run --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" -v E:/mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v E:/mydata/elasticsearch/data:/usr/share/elasticsearch/data -v E:/mydata/elasticsearch/plugings:/usr/share/elasticsearch/plugins -d elasticsearch:7.6.2
 ```
 
-#### Nginx
+### Nginx
 
 ```shell
 #先创建空的把conf目录移出挂载
@@ -144,7 +161,7 @@ $ docker container cp nginx:/etc/nginx .
 $ docker run -p 80:80 --name nginx -v E:/mydata/nginx/html:/usr/share/nginx/html -v E:/mydata/nginx/logs:/var/log/nginx -v E:/mydata/nginx/conf.d:/etc/nginx/conf.d -d nginx:latest
 ```
 
-#### RabbitMQ
+### RabbitMQ
 
 ```shell
 $ docker run -d --name rabbitmq -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:25672 -p 15671:15671 -p 15672:15672 rabbitmq:management
