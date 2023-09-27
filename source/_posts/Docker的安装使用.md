@@ -68,6 +68,7 @@ Docker 将应用程序与该程序的依赖，打包在一个文件里面。运�
 |           docker logs container-name/container-id            |                         查看容器日志                         |
 |    docker exec -it 容器ID /bin/bash------attach(exit退出)    |                         进入new容器                          |
 |                        exit/Ctrl+P+Q                         |                           退出容器                           |
+|       docker inspect <container_id> grep \| IPAddress        |                            查看ip                            |
 
 ### 容器卷
 
@@ -167,7 +168,7 @@ $ docker run --name redis -p 6379:6379 \
 
 ​	
 
-### ElasticSearch
+### ELK
 
 ```shell
 
@@ -176,7 +177,11 @@ $ docker run --name kibana -e ELASTICSEA	RCH_HOSTS=http://172.24.0.1:9200 -p 560
 $ docker run --name kibana -p 5601:5601 -v E:/mydata/kibana/config/:/usr/share/kibana/config -d kibana:7.6.2	//配置文件指定
 
 
+//先创建挂在文件夹  elasticsearch.yml：network.host: 0.0.0.0
 $ docker run --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" -v E:/mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v E:/mydata/elasticsearch/data:/usr/share/elasticsearch/data -v E:/mydata/elasticsearch/plugings:/usr/share/elasticsearch/plugins -d elasticsearch:7.6.2
+
+
+$ docker run -p 5044:5044 -p 5000:5000 -p 4999:4999 --name=logstash --restart=always --privileged=true -e ES_JAVA_OPTS="-Xms64m -Xmx512m" -v E:/mydata/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml  -d logstash:7.6.2
 ```
 
 ### Nginx
